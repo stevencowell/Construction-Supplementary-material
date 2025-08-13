@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Task 4 – Measurement Method Tutorial</title>
+<script src='https://cdn.tailwindcss.com'></script>
+<style>
+body{background:#f3f5fa;font-family:system-ui,Roboto,sans-serif}
+.card{max-width:72rem;margin:auto;background:#fff;border-radius:1rem;box-shadow:0 8px 24px rgba(0,0,0,.08);overflow:hidden}
+.btn{padding:.55rem 1.3rem;font-weight:600;border-radius:.375rem;transition:.2s}
+.btn-blue{background:#2563eb;color:#fff}.btn-blue:hover{background:#1e40e9}
+.btn-grey{background:#6b7280;color:#fff}.btn-grey:hover{background:#4b5563}
+.btn[disabled]{background:#cbd5e1!important;cursor:not-allowed}
+.progress-bg{height:.5rem;background:#e2e8f0;border-radius:.375rem}
+.progress-fill{height:100%;background:#2563eb;width:0;transition:width .3s}
+</style>
+</head>
+<body class='p-4'>
+
+<div class='card'>
+  <div class='p-8' id='panel'></div>
+  <div class='bg-slate-50 border-t border-slate-200 px-8 py-4 flex flex-col gap-4'>
+    <div class='flex justify-between items-center'>
+      <button id='prev' class='btn btn-grey'>Previous</button>
+      <div class='font-semibold text-blue-700'>Topic <span id='curr'></span>/<span id='tot'></span></div>
+      <button id='next' class='btn btn-blue'>Next</button>
+    </div>
+    <div class='progress-bg'><div id='bar' class='progress-fill'></div></div>
+  </div>
+</div>
+
+<script type='application/json' id='data'>[{"title":"📏 Module 1 – Reading Scaled Drawings","overview":"Learn how to decode scale bars, dimension lines and symbols before you ever pick up a tape.","steps":["Locate the title‑block to confirm drawing scale (e.g. 1:10).","Identify baseline dimensions – overall length, width and height.","Use a ruler or scale rule to convert any non‑dimensioned part.","Check symbol legend for timber species, fasteners or finish codes."],"example_title":"Worked Example – Carry‑All End Elevation","example":["Drawing shows overall depth ‘D = 180 mm’.","Handle hole centres marked 65 mm from each end – confirm by scaling if missing.","At 1:10, a 30 mm line on paper = 300 mm real length."],"tip":"📌 **Avoid cumulative error** – always measure from the same datum line, not from the last mark."},{"title":"🛠️ Module 2 – Selecting & Zeroing Measurement Tools","overview":"Choosing the right tool – and zeroing it – is half the battle for accuracy.","steps":["💡 **Steel rule**: best for bench work ≤ 300 mm; zero edge is true.","🎣 **Retractable tape**: use for anything longer; confirm hook movement matches tape thickness.","📐 **Folding rule**: rigid spans across voids; check joints for play.","‘Burn 100’ trick – start at 100 mm mark to remove bent hook error."],"example_title":"Quick Check – Is Your Tape Zero Accurate?","example":["Hook the tape over rule’s 100 mm mark.","If the tape reads 100 mm at the rule’s edge, your hook is correct.","If not, adjust reading or use ‘burn 100’."],"tip":"👀 **Parallax**: keep eye square to scale; angled viewing shifts reading by up to 0.5 mm."},{"title":"📐 Module 3 – Linear, Perimeter & Cut Lists","overview":"Translate dimensions into cutting lengths and total edging requirements.","steps":["Linear length = dimension × scale factor.","Perimeter P = 2 × (L + W).","Add 10 mm trim allowance for each saw cut unless CNC cut.","Document each part in a simple cut‑list (Size × Qty)."],"example_title":"Worked Example – Desk Skirt","example":["Bench top 900 × 600 mm ⇒ P = 2 × (0.9 + 0.6) = 3.0 m.","Skirting comes in 2.4 m lengths ⇒ need 2 lengths.","Add 10 % waste: 3.0 m × 1.1 = 3.3 m ⇒ still 2 x 2.4 m sticks."],"tip":"✂️ **Group identical parts** to minimise setup time and off‑cuts."},{"title":"📏 Module 4 – Area, Volume & Waste Allowance","overview":"Calculate material quantities for sheet goods, concrete and coatings.","steps":["Area A = L × W (in m²); Volume V = L × W × H (in m³).","Add waste: 10 % for framing, 15 % for tiles, 5 % for concrete depending on spec.","Round up to nearest full sheet, bag or cubic metre supplier unit."],"example_title":"Worked Example – Concrete Pier","example":["Pier 0.3 m × 0.3 m × 0.45 m ⇒ V = 0.0405 m³.","Allowance 5 % ⇒ 0.0405 × 1.05 ≈ 0.0425 m³.","20 kg bag yields 0.01 m³ concrete ⇒ need 5 bags."],"tip":"📊 **Use consistent units** – convert mm to metres before multiplying."},{"title":"💲 Module 5 – Converting Quantities to Cost","overview":"Turn measured quantities into a basic cost estimate.","steps":["Materials: qty × unit price (ex GST).","Labour: hours × crew hourly rate.","Add 10 % contingency for consumables (glue, screws).","Present subtotal + GST clearly for supervisor sign‑off."],"example_title":"Quick Costing – Timber Frame","example":["6 studs @ 2.4 m each ⇒ 14.4 m total.","Pine 90×45 costs AUD $6.10 per metre ⇒ material $88.00.","Labour 2 hrs @ $40 ⇒ $80.","Consumables 10 % ⇒ $8.80."],"tip":"🧮 **Spreadsheet** templates speed up repeat jobs and reduce calculator slip‑ups."}]</script>
+
+<template id='tpl'>
+<section>
+  <h2 class='text-2xl font-bold text-slate-800 mb-2 title'></h2>
+  <p class='mb-6 text-slate-600 overview'></p>
+
+  <h3 class='font-semibold text-slate-700 mb-2'>Step‑by‑step method</h3>
+  <ul class='list-disc list-inside space-y-1 mb-6 steps'></ul>
+
+  <details class='mb-6 bg-blue-50 border border-blue-200 rounded-lg'>
+    <summary class='p-4 cursor-pointer flex justify-between items-center text-blue-800'>
+      <span class='example-title'></span>
+      <svg class='w-4 h-4 transition-transform' viewBox='0 0 20 20' fill='currentColor'>
+        <path fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.08z' clip-rule='evenodd'/>
+      </svg>
+    </summary>
+    <ul class='list-decimal list-inside p-4 space-y-1 example'></ul>
+  </details>
+
+  <div class='bg-green-50 border-l-4 border-green-500 p-4 rounded tip'></div>
+</section>
+</template>
+
+<script>
+const modules = JSON.parse(document.getElementById('data').textContent);
+const panel = document.getElementById('panel');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+const bar = document.getElementById('bar');
+const curr = document.getElementById('curr');
+const tot  = document.getElementById('tot');
+let idx = 0; tot.textContent = modules.length;
+
+function render(){
+  const m = modules[idx];
+  const frag = document.importNode(document.getElementById('tpl').content,true);
+  frag.querySelector('.title').textContent = m.title;
+  frag.querySelector('.overview').textContent = m.overview;
+  const stepsUl = frag.querySelector('.steps');
+  m.steps.forEach(t=>{const li=document.createElement('li');li.textContent=t;stepsUl.appendChild(li);});
+  frag.querySelector('.example-title').textContent = '🔎 '+m.example_title+' (click to expand)';
+  const exUl = frag.querySelector('.example');
+  m.example.forEach(t=>{const li=document.createElement('li');li.textContent=t;exUl.appendChild(li);});
+  frag.querySelector('.tip').innerHTML = m.tip;
+
+  panel.innerHTML='';
+  panel.appendChild(frag);
+
+  prev.disabled = idx===0;
+  next.disabled = idx===modules.length-1;
+  next.textContent = idx===modules.length-1 ? 'Finish':'Next';
+  curr.textContent = idx+1;
+  bar.style.width = ((idx+1)/modules.length*100)+'%';
+}
+
+prev.onclick=()=>{if(idx>0){idx--;render();}};
+next.onclick=()=>{if(idx<modules.length-1){idx++;render();}};
+
+render();
+</script>
+  <script src="../search.js"></script>
+</body>
+</html>
