@@ -90,6 +90,7 @@
       #search-input { padding: 0.5rem 1rem; border: 1px solid #ccc; border-radius: 4px; width: 60%; max-width: 320px; }
       #search-btn { padding: 0.5rem 1rem; margin-left: 0.5rem; background: #28a745; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
       #search-btn:hover { background: #218838; }
+      #search-status { display: block; margin-top: 0.5rem; }
       #search-results { max-width: 800px; margin: 0 auto; padding: 0 1rem; text-align: left; }
       .search-result { margin: 0.75rem 0; padding: 0.75rem 1rem; background: #fff; border: 1px solid #e5e7eb; border-radius: 6px; }
       .search-result a { color: #1f2937; font-weight: 600; display: inline-block; margin-bottom: 0.25rem; }
@@ -104,6 +105,7 @@
       }
       .is-non-home #search-input { width: 220px; max-width: 60vw; }
       .is-non-home #search-results { margin-top: 1rem; }
+      .is-non-home #search-status { display: inline-block; margin-left: 0.75rem; vertical-align: middle; }
 
       @media (max-width: 640px) {
         .is-non-home #search-input { width: 55vw; }
@@ -159,6 +161,17 @@
       container.appendChild(btn);
     }
 
+    // Inline status element near the search input/button
+    let status = document.getElementById('search-status');
+    if (!status) {
+      status = document.createElement('span');
+      status.id = 'search-status';
+      status.className = 'muted';
+      status.setAttribute('role', 'status');
+      status.setAttribute('aria-live', 'polite');
+      container.appendChild(status);
+    }
+
     if (!results) {
       results = document.createElement('div');
       results.id = 'search-results';
@@ -178,6 +191,13 @@
       }
     }
 
+    // Ensure order on home: results appear directly after the search container
+    if (home && container.parentElement === results.parentElement) {
+      if (container.nextSibling !== results) {
+        container.parentElement.insertBefore(results, container.nextSibling);
+      }
+    }
+
     return { input, btn, results };
   }
 
@@ -190,14 +210,22 @@
   async function performSearch() {
     const inputEl = document.getElementById('search-input');
     const resultsEl = document.getElementById('search-results');
+    const statusEl = document.getElementById('search-status');
     if (!inputEl || !resultsEl) return;
 
     const rawQuery = inputEl.value.trim();
     const query = rawQuery.toLowerCase();
     resultsEl.innerHTML = '';
-    if (!query) return;
+    if (!query) {
+      if (statusEl) statusEl.textContent = '';
+      return;
+    }
 
-    resultsEl.innerHTML = '<div class="muted">Searching…</div>';
+    if (statusEl) {
+      statusEl.textContent = 'Searching…';
+    } else {
+      resultsEl.innerHTML = '<div class="muted">Searching…</div>';
+    }
 
     const base = getBasePrefix();
     const matches = [];
@@ -222,6 +250,7 @@
     }
 
     if (matches.length === 0) {
+      if (statusEl) statusEl.textContent = '';
       resultsEl.innerHTML = '<div class="muted">No matching content found.</div>';
       return;
     }
@@ -247,6 +276,7 @@
       container.appendChild(resultItem);
     });
 
+    if (statusEl) statusEl.textContent = '';
     resultsEl.innerHTML = '';
     resultsEl.appendChild(container);
   }
