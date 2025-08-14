@@ -114,6 +114,31 @@
     document.head.appendChild(style);
   }
 
+  function isModulePage() {
+    const path = window.location.pathname || '';
+    const filename = (path.split('/') || []).pop() || '';
+    return /^module\d+\.html$/i.test(filename);
+  }
+
+  function injectModuleBlueTheme() {
+    if (!isModulePage()) return;
+    if (document.getElementById('module-blue-theme')) return;
+    const style = document.createElement('style');
+    style.id = 'module-blue-theme';
+    style.textContent = `
+      header { background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important; color: #fff !important; }
+      a, .back-link { color: #007bff !important; }
+      a:hover, .back-link:hover { color: #0056b3 !important; text-decoration: underline !important; }
+      h2 { color: #0056b3 !important; border-bottom: 2px solid #e7f3ff !important; }
+      ul li::marker { color: #007bff !important; }
+      .module-nav a { background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important; color: #fff !important; }
+      /* Blue overrides for search button on module pages */
+      #search-btn { background: #007bff !important; }
+      #search-btn:hover { background: #0056b3 !important; }
+    `;
+    document.head.appendChild(style);
+  }
+
   function ensureSearchUI() {
     const home = isHomePage();
     // Decide where to place the search input and results
@@ -319,12 +344,14 @@
     document.addEventListener('DOMContentLoaded', function() {
       applyPageContextClass();
       injectStyles();
+      injectModuleBlueTheme();
       ensureSearchUI();
       attachHandlers();
     });
   } else {
     applyPageContextClass();
     injectStyles();
+    injectModuleBlueTheme();
     ensureSearchUI();
     attachHandlers();
   }
