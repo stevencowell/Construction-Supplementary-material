@@ -98,17 +98,24 @@
       .muted { color: #6b7280; font-size: 0.9rem; }
       mark { background: #fff3cd; padding: 0 2px; border-radius: 2px; }
 
-      /* Non-home overrides: place search at top-right within header */
+      /* Non-home overrides: place search at top-right; results float so layout is not affected */
       .is-non-home header { position: relative; }
       .is-non-home #search-container {
         position: absolute; top: 0.75rem; right: 0.75rem; margin: 0; text-align: right;
       }
       .is-non-home #search-input { width: 220px; max-width: 60vw; }
-      .is-non-home #search-results { margin-top: 1rem; }
+      /* Make results a floating panel to avoid shifting page content (e.g., flex-centered bodies) */
+      .is-non-home #search-results {
+        position: fixed; top: 3.25rem; right: 0.75rem; margin: 0; width: 360px; max-width: 90vw;
+        max-height: 60vh; overflow: auto; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px;
+        padding: 0.5rem; box-shadow: 0 10px 24px rgba(0,0,0,0.1); z-index: 50;
+      }
+      .is-non-home #search-results:empty { display: none; }
       .is-non-home #search-status { display: inline-block; margin-left: 0.75rem; vertical-align: middle; }
 
       @media (max-width: 640px) {
         .is-non-home #search-input { width: 55vw; }
+        .is-non-home #search-results { left: 0.5rem; right: 0.5rem; width: auto; max-height: 50vh; }
       }
     `;
     document.head.appendChild(style);
