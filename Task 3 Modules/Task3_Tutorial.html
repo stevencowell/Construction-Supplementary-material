@@ -41,6 +41,11 @@
       <button id="next" class="btn btn-blue">Next</button>
     </div>
     <div class="progress-bg"><div id="bar" class="progress-fill"></div></div>
+    <!-- Finish and Back to Modules buttons -->
+    <div class="flex justify-center gap-4 mt-2">
+      <button id="finishBtn" class="btn btn-blue hidden">Finish & Return to Modules</button>
+      <a href="task3_index.html" class="btn btn-grey">Back to Modules</a>
+    </div>
   </div>
 </div>
 
@@ -153,6 +158,7 @@ const data=[
 
 /* -------- DOM -------- */
 const panel=document.getElementById('panel');
+const finishBtn=document.getElementById("finishBtn");
 const prev=document.getElementById('prev');
 const next=document.getElementById('next');
 const bar=document.getElementById('bar');
@@ -195,12 +201,22 @@ function render(){
   prev.disabled=idx===0;
   next.disabled=idx===data.length-1;
   next.textContent=idx===data.length-1?'Finish':'Next';
+  
+  // Show/hide finish button
+  if(idx===data.length-1){
+    finishBtn.classList.remove("hidden");
+  } else {
+    finishBtn.classList.add("hidden");
+  }
   stepNow.textContent=idx+1;
   bar.style.width=((idx+1)/data.length*100)+'%';
 }
 
 prev.onclick=()=>{if(idx>0){idx--;render();}};
 next.onclick=()=>{if(idx<data.length-1){idx++;render();}};
+
+// Finish button functionality
+finishBtn.onclick=()=>{window.location.href="task3_index.html";};
 
 render();
 </script>
