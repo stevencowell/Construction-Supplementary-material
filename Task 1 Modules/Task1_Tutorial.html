@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Task 1 Tutorial � White Card & PPE</title>
+<title>Task 1 Tutorial � White Card & PPE</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   body{background:#f3f5fa;font-family:system-ui,Roboto,sans-serif}
@@ -57,6 +57,12 @@
       <button id="next" class="btn btn-blue">Next</button>
     </div>
     <div class="progress-bg"><div id="bar" class="progress-fill"></div></div>
+    
+    <!-- Finish and Back to Modules buttons -->
+    <div class="flex justify-center gap-4 mt-2">
+      <button id="finishBtn" class="btn btn-blue hidden">Finish & Return to Modules</button>
+      <a href="task1_index.html" class="btn btn-grey">Back to Modules</a>
+    </div>
   </div>
 </div>
 
@@ -102,7 +108,7 @@
 /* -------- Scenario Data -------- */
 const data=[
   {
-    title:"⚠️ Introduction � White Card & PPE",
+    title:"⚠️ Introduction � White Card & PPE",
     desc:"This tutorial walks you through the basics of White Card requirements and proper personal protective equipment.",
     tip:"Always check your PPE before you start work.",
     qs:[
@@ -120,6 +126,7 @@ const next=document.getElementById('next');
 const bar=document.getElementById('bar');
 const stepNow=document.getElementById('stepNow');
 const stepTotal=document.getElementById('stepTotal');
+const finishBtn=document.getElementById('finishBtn');
 
 let idx=0;stepTotal.textContent=data.length;
 
@@ -161,6 +168,14 @@ function render(){
   prev.disabled=idx===0;
   next.disabled=idx===data.length-1;
   next.textContent=idx===data.length-1?'Finish':'Next';
+  
+  // Show/hide finish button
+  if(idx===data.length-1){
+    finishBtn.classList.remove('hidden');
+  } else {
+    finishBtn.classList.add('hidden');
+  }
+  
   stepNow.textContent=idx+1;
   bar.style.width=((idx+1)/data.length*100)+'%';
 }
@@ -168,6 +183,9 @@ function render(){
 /* -------- Events -------- */
 prev.onclick=()=>{if(idx>0){idx--;render();}};
 next.onclick=()=>{if(idx<data.length-1){idx++;render();}};
+
+// Finish button functionality
+finishBtn.onclick=()=>{window.location.href='task1_index.html';};
 
 /* -------- Kick off -------- */
 render();
