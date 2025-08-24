@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Symbols Tutorial - Construction Drawing Symbols</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #1e40af;
+            color: white;
+            border-color: #1e40af;
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        h2 {
+            color: #1e40af;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #374151;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        .intro-section {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .symbols-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .symbol-category {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .symbol-category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.15);
+            border-color: #3b82f6;
+        }
+
+        .symbol-category h4 {
+            color: #1e40af;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .symbol-category img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .symbol-category img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            margin-top: 5vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .close-modal {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-caption {
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .symbol-category p {
+            color: #4b5563;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .symbol-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .symbol-list li {
+            background: #f1f5f9;
+            margin: 0.5rem 0;
+            padding: 0.75rem;
+            border-radius: 6px;
+            border-left: 4px solid #1e40af;
+            font-size: 0.9rem;
+        }
+
+        .interactive-section {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .interactive-section h3 {
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .symbol-quiz {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 2px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-item:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        }
+
+        .quiz-item.correct {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .quiz-item.incorrect {
+            border-color: #ef4444;
+            background: #fef2f2;
+        }
+
+        .quiz-item img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto 1rem auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        .quiz-item h5 {
+            color: #1e293b;
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+
+        .quiz-item p {
+            color: #6b7280;
+            margin: 0;
+            text-align: center;
+        }
+
+        .quiz-feedback {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .quiz-feedback.show {
+            display: block;
+        }
+
+        .quiz-feedback.correct {
+            background: #f0fdf4;
+            border-color: #10b981;
+            color: #065f46;
+        }
+
+        .quiz-feedback.incorrect {
+            background: #fef2f2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+
+        .practice-section {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .practice-section h3 {
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .symbol-matching {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .matching-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .matching-item:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .matching-item img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            margin: 0 auto 1rem auto;
+            border-radius: 6px;
+        }
+
+        .matching-item h5 {
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .matching-item p {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .matching-item.dragover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .matching-item.matched {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .activity-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .activity-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .activity-btn:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .activity-btn.secondary {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+
+        .activity-btn.secondary:hover {
+            background: linear-gradient(135deg, #047857 0%, #059669 100%);
+        }
+
+        .score-display {
+            background: #1e40af;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .symbols-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .symbol-quiz {
+                grid-template-columns: 1fr;
+            }
+            
+            .symbol-matching {
+                grid-template-columns: 1fr;
+            }
+            
+            .activity-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin-top: 2vh;
+                max-height: 96vh;
+            }
+            
+            .close-modal {
+                top: 10px;
+                right: 10px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Plan Symbols Tutorial</h1>
+            <p>Learn Construction Drawing Symbols and Practice Your Skills</p>
+        </header>
+
+        <main>
+            <a href="module1.html" class="back-link">Back to Module 1</a>
+
+            <div class="intro-section">
+                <h2>Understanding Construction Plan Symbols</h2>
+                <p>Construction plans use standardised symbols to represent various building elements, fixtures, and systems. Learning these symbols is essential for anyone working in construction, as they provide the "language" needed to read and interpret technical drawings.</p>
+                <p>This tutorial covers the most common symbols you'll encounter in residential and commercial construction plans.</p>
+            </div>
+
+            <h2>Symbol Categories</h2>
+            <div class="symbols-grid">
+                <div class="symbol-category">
+                    <h4>🏠 Wall & Structural Symbols</h4>
+                    <img src="../Plan Symbols/wall-symbols-floor-plan-symbols.webp" alt="Wall and structural symbols used in floor plans" />
+                    <p>These symbols represent different types of walls, columns, beams, and structural elements that form the building's framework.</p>
+                    <ul class="symbol-list">
+                        <li><strong>Solid Lines:</strong> Exterior walls (thicker lines)</li>
+                        <li><strong>Dashed Lines:</strong> Interior walls and partitions</li>
+                        <li><strong>Double Lines:</strong> Cavity walls or double-stud construction</li>
+                        <li><strong>Columns:</strong> Structural support elements</li>
+                    </ul>
+                </div>
+
+                <div class="symbol-category">
+                    <h4>🚪 Door Symbols</h4>
+                    <img src="../Plan Symbols/door-symbols-floor-plan-symbols.webp" alt="Door symbols and their variations in floor plans" />
+                    <p>Door symbols show the type, size, and swing direction of doors throughout the building.</p>
+                    <ul class="symbol-list">
+                        <li><strong>Single Door:</strong> Standard hinged door</li>
+                        <li><strong>Double Door:</strong> Two-panel door system</li>
+                        <li><strong>Sliding Door:</strong> Door that slides horizontally</li>
+                        <li><strong>Pocket Door:</strong> Door that slides into wall cavity</li>
+                    </ul>
+                </div>
+
+                <div class="symbol-category">
+                    <h4>🪟 Window Symbols</h4>
+                    <img src="../Plan Symbols/floor-play-symbols-compass-1536x610.webp" alt="Window symbols and compass orientation in floor plans" />
+                    <p>Window symbols indicate the type, size, and location of windows, plus important orientation information.</p>
+                    <ul class="symbol-list">
+                        <li><strong>Standard Window:</strong> Fixed or operable window</li>
+                        <li><strong>Bay Window:</strong> Projecting window structure</li>
+                        <li><strong>Skylight:</strong> Window in roof or ceiling</li>
+                        <li><strong>North Arrow:</strong> Shows building orientation</li>
+                    </ul>
+                </div>
+
+                <div class="symbol-category">
+                    <h4>⚡ Electrical Symbols</h4>
+                    <img src="../Plan Symbols/electrical-symbols-floor-plan-symbols.webp" alt="Electrical symbols for outlets, switches, and fixtures" />
+                    <p>Electrical symbols represent outlets, switches, light fixtures, and other electrical components.</p>
+                    <ul class="symbol-list">
+                        <li><strong>Power Outlets:</strong> Standard and specialised outlets</li>
+                        <li><strong>Light Switches:</strong> Single and multiple switches</li>
+                        <li><strong>Light Fixtures:</strong> Ceiling and wall-mounted lights</li>
+                        <li><strong>Electrical Panel:</strong> Main distribution board</li>
+                    </ul>
+                </div>
+
+                <div class="symbol-category">
+                    <h4>🚿 Plumbing Symbols</h4>
+                    <img src="../Plan Symbols/plumbing-fixture-symbols.webp" alt="Plumbing fixture symbols for bathrooms and kitchens" />
+                    <p>Plumbing symbols show the location and type of water fixtures and drainage systems.</p>
+                    <ul class="symbol-list">
+                        <li><strong>Toilets:</strong> Different types and orientations</li>
+                        <li><strong>Basins:</strong> Sinks and wash basins</li>
+                        <li><strong>Showers:</strong> Shower stalls and tubs</li>
+                        <li><strong>Kitchen Sink:</strong> Single and double bowl sinks</li>
+                    </ul>
+                </div>
+
+                <div class="symbol-category">
+                    <h4>🪑 Furniture & Appliances</h4>
+                    <img src="../Plan Symbols/furniture-symbols-floor-plan-symbols.webp" alt="Furniture and appliance symbols in floor plans" />
+                    <p>Furniture symbols help visualise how spaces will be used and where items will be placed.</p>
+                    <ul class="symbol-list">
+                        <li><strong>Kitchen Layout:</strong> Cabinets, appliances, work areas</li>
+                        <li><strong>Bathroom Fixtures:</strong> Vanities, storage, accessories</li>
+                        <li><strong>Bedroom Furniture:</strong> Beds, wardrobes, dressers</li>
+                        <li><strong>Living Areas:</strong> Seating, tables, entertainment units</li>
+                    </ul>
+                </div>
+
+                <div class="symbol-category">
+                    <h4>🏠 Staircase Symbols</h4>
+                    <img src="../Plan Symbols/staircase.jpg" alt="Staircase symbols showing direction and type" />
+                    <p>Staircase symbols indicate the type, direction, and configuration of stairs between building levels.</p>
+                    <ul class="symbol-list">
+                        <li><strong>Straight Stairs:</strong> Single flight between levels</li>
+                        <li><strong>L-Shaped Stairs:</strong> Stairs with landing and turn</li>
+                        <li><strong>U-Shaped Stairs:</strong> Stairs with landing and 180° turn</li>
+                        <li><strong>Spiral Stairs:</strong> Circular staircase design</li>
+                    </ul>
+                </div>
+
+                <div class="symbol-category">
+                    <h4>🔌 Appliance Symbols</h4>
+                    <img src="../Plan Symbols/appliances-symbols.webp" alt="Kitchen and laundry appliance symbols" />
+                    <p>Appliance symbols show the location and type of major appliances in kitchens and utility areas.</p>
+                    <ul class="symbol-list">
+                        <li><strong>Kitchen Appliances:</strong> Stove, refrigerator, dishwasher</li>
+                        <li><strong>Laundry Equipment:</strong> Washing machine, dryer</li>
+                        <li><strong>HVAC Equipment:</strong> Heating and cooling units</li>
+                        <li><strong>Specialty Equipment:</strong> Range hoods, garbage disposals</li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+
+
+            <h2>Key Learning Points</h2>
+            <ul>
+                <li><strong>Standardisation:</strong> Construction symbols are standardised across the industry for consistency</li>
+                <li><strong>Context Matters:</strong> The same symbol may have different meanings depending on the drawing type</li>
+                <li><strong>Scale and Proportion:</strong> Symbols are drawn to scale and show relative sizes</li>
+                <li><strong>Combination Symbols:</strong> Multiple symbols can be combined to show complex elements</li>
+                <li><strong>Legend Reference:</strong> Always check the drawing legend for symbol definitions</li>
+            </ul>
+
+            <h2>Practice Activities</h2>
+            <p>To improve your symbol recognition skills:</p>
+            <ol>
+                <li><strong>Daily Practice:</strong> Review symbols for 10-15 minutes each day</li>
+                <li><strong>Real Plans:</strong> Practice reading actual construction plans</li>
+                <li><strong>Symbol Drawing:</strong> Practice drawing symbols from memory</li>
+                <li><strong>Group Study:</strong> Quiz each other on symbol meanings</li>
+                <li><strong>Field Application:</strong> Identify symbols on actual construction sites</li>
+            </ol>
+        </main>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <img id="modalImage" class="modal-image" src="" alt="" />
+            <div class="modal-caption" id="modalCaption"></div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz functionality
+        let quizAttempted = false;
+
+        function checkQuiz() {
+            if (quizAttempted) return;
+            
+            const quizItems = document.querySelectorAll('.quiz-item');
+            let correctAnswers = 0;
+            
+            quizItems.forEach(item => {
+                const isCorrect = item.getAttribute('data-correct') === 'true';
+                const feedback = item.getAttribute('data-feedback');
+                
+                if (isCorrect) {
+                    item.classList.add('correct');
+                    correctAnswers++;
+                } else {
+                    item.classList.add('incorrect');
+                }
+                
+                // Add feedback
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.className = `quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+                feedbackDiv.textContent = feedback;
+                item.appendChild(feedbackDiv);
+                feedbackDiv.classList.add('show');
+            });
+            
+            // Show score
+            document.getElementById('scoreValue').textContent = correctAnswers;
+            document.getElementById('quizScore').style.display = 'block';
+            
+            quizAttempted = true;
+        }
+
+        function resetQuiz() {
+            const quizItems = document.querySelectorAll('.quiz-item');
+            quizItems.forEach(item => {
+                item.classList.remove('correct', 'incorrect');
+                const feedback = item.querySelector('.quiz-feedback');
+                if (feedback) feedback.remove();
+            });
+            
+            document.getElementById('quizScore').style.display = 'none';
+            quizAttempted = false;
+        }
+
+        // Matching game functionality
+        let matchingActive = false;
+
+        function startMatching() {
+            if (matchingActive) return;
+            
+            matchingActive = true;
+            const matchingItems = document.querySelectorAll('.matching-item');
+            
+            matchingItems.forEach(item => {
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragover', handleDragOver);
+                item.addEventListener('drop', handleDrop);
+                item.addEventListener('dragenter', handleDragEnter);
+                item.addEventListener('dragleave', handleDragLeave);
+            });
+            
+            alert('Matching game started! Drag symbols to match them with their descriptions.');
+        }
+
+        function resetMatching() {
+            matchingActive = false;
+            const matchingItems = document.querySelectorAll('.matching-item');
+            
+            matchingItems.forEach(item => {
+                item.classList.remove('matched', 'dragover');
+                item.removeEventListener('dragstart', handleDragStart);
+                item.removeEventListener('dragover', handleDragOver);
+                item.removeEventListener('drop', handleDrop);
+                item.removeEventListener('dragenter', handleDragEnter);
+                item.removeEventListener('dragleave', handleDragLeave);
+            });
+        }
+
+        function handleDragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.dataset.symbol);
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+        }
+
+        function handleDragEnter(e) {
+            e.preventDefault();
+            e.target.closest('.matching-item').classList.add('dragover');
+        }
+
+        function handleDragLeave(e) {
+            e.target.closest('.matching-item').classList.remove('dragover');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            const draggedSymbol = e.dataTransfer.getData('text/plain');
+            const targetItem = e.target.closest('.matching-item');
+            
+            if (targetItem && draggedSymbol === targetItem.dataset.symbol) {
+                targetItem.classList.add('matched');
+                targetItem.classList.remove('dragover');
+            }
+        }
+
+        // Add click functionality for mobile devices
+        document.addEventListener('DOMContentLoaded', function() {
+            const quizItems = document.querySelectorAll('.quiz-item');
+            quizItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (!quizAttempted) {
+                        const isCorrect = this.getAttribute('data-correct') === 'true';
+                        const feedback = this.getAttribute('data-feedback');
+                        
+                        if (isCorrect) {
+                            this.classList.add('correct');
+                        } else {
+                            this.classList.add('incorrect');
+                        }
+                        
+                        // Add feedback
+                        const existingFeedback = this.querySelector('.quiz-feedback');
+                        if (!existingFeedback) {
+                            const feedbackDiv = document.createElement('div');
+                            feedbackDiv.className = `quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+                            feedbackDiv.textContent = feedback;
+                            this.appendChild(feedbackDiv);
+                            feedbackDiv.classList.add('show');
+                        }
+                    }
+                });
+            });
+
+            // Add click functionality for symbol images to open modal
+            const symbolImages = document.querySelectorAll('.symbol-category img');
+            symbolImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    openModal(this.src, this.alt);
+                });
+            });
+        });
+
+        // Modal functionality
+        function openModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            
+            modalImage.src = imageSrc;
+            modalImage.alt = imageAlt;
+            modalCaption.textContent = imageAlt;
+            modal.style.display = 'block';
+            
+            // Prevent body scroll when modal is open
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            
+            // Restore body scroll
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

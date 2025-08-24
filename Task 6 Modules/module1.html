@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Module 1: Reading Plans, Specifications & Symbols" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 1: Reading Plans, Specifications & Symbols</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    body { margin: 0; font-family: 'Roboto', Arial, sans-serif; background: #f9fafb; color: #333; line-height: 1.6; }
+    a { text-decoration: none; color: #6f42c1; }
+    header { background: linear-gradient(135deg, #6f42c1, #563d7c); color: #fff; padding: 3rem 1rem; text-align: center; }
+    header h1 { font-size: 2.5rem; margin: 0; font-weight: 700; }
+    header p { margin: 0.25rem 0 0 0; font-size: 1.125rem; opacity: 0.9; }
+    main { max-width: 800px; margin: -2rem auto 0 auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: relative; z-index: 10; }
+    .back-link { display: inline-block; margin-bottom: 1.5rem; font-weight: 500; }
+    .back-link:hover { text-decoration: underline; }
+    h2 { font-size: 1.75rem; color: #563d7c; margin-top: 1.5rem; border-bottom: 2px solid #f3eef9; padding-bottom: 0.5rem; }
+    ul { padding-left: 1.5em; }
+    .plan-type { margin-bottom: 1rem; }
+    footer { text-align: center; padding: 1.5rem; margin-top: 2rem; background: #f1f5f9; border-top: 1px solid #e0e0e0; font-size: 0.9rem; color: #555; }
+  
+      /* Unified palette and navigation styles for module pages */
+  .back-link {
+    color: #2563eb;
+  }
+  .back-link:hover {
+    color: #1e40e9;
+    text-decoration: underline;
+  }
+  header {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40e9 100%);
+  }
+  a {
+    color: #2563eb;
+  }
+  a:hover {
+    color: #1e40e9;
+    text-decoration: underline;
+  }
+  h2 {
+    color: #2563eb;
+    border-bottom: 2px solid #eff6ff;
+  }
+  ul li::marker {
+    color: #2563eb;
+  }
+  .module-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+  }
+  .module-nav a {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40e9 100%);
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .module-nav a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  
+  /* Center all images across the website */
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Plan Example Section Styles */
+  .plan-example {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .plan-example h3 {
+    color: #1e40af;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .plan-example h3:first-child {
+    margin-top: 0;
+  }
+  
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .plan-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .plan-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-color: #1e40af;
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  }
+  
+  .plan-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .plan-title {
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .plan-subtitle {
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .plan-description {
+    font-size: 0.85rem;
+    color: #475569;
+    line-height: 1.4;
+  }
+  
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .feature-item {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  
+  .feature-item strong {
+    color: #1e40af;
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+  }
+  
+  .feature-item ul {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+  
+  .feature-item li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #475569;
+  }
+  
+  .practice-note {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid #f59e0b;
+  }
+  
+  .practice-note h4 {
+    color: #d97706;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+  
+  .practice-note p {
+    margin: 0;
+    color: #92400e;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  /* Interactive Feature Styles */
+  .feature-item.interactive {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .feature-item.interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    border-color: #1e40af;
+  }
+  
+  .feature-item.interactive::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(30, 64, 175, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .feature-item.interactive:hover::before {
+    left: 100%;
+  }
+  
+  .feature-hint {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    color: #1e40af;
+    padding: 0.5rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid #93c5fd;
+  }
+  
+  /* Modal Styles */
+  .feature-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+  
+  .close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+  }
+  
+  .close-modal:hover {
+    color: #000;
+  }
+  
+  .feature-guide {
+    margin-top: 1rem;
+  }
+  
+  .feature-guide h4 {
+    color: #1e40af;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+  
+  .plan-section {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-left: 4px solid #1e40af;
+  }
+  
+  .plan-section h5 {
+    color: #1e40af;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+  
+  .location-guide {
+    background: #fff;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 0.75rem 0;
+  }
+  
+  .location-guide strong {
+    color: #dc2626;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .location-guide ul {
+    margin: 0.5rem 0;
+    padding-left: 1.25rem;
+  }
+  
+  .location-guide li {
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .visual-cue {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 1px solid #f59e0b;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin: 0.75rem 0;
+  }
+  
+  .visual-cue strong {
+    color: #d97706;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Tutorial Card Styles */
+  .tutorial-card-section {
+    margin: 2rem 0;
+  }
+
+  .tutorial-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .tutorial-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: 2px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .tutorial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(30, 64, 175, 0.15);
+    border-color: #3b82f6;
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  }
+
+  .tutorial-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .tutorial-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 0.5rem;
+  }
+
+  .tutorial-subtitle {
+    font-size: 1rem;
+    color: #6b7280;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .tutorial-description {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .tutorial-action {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e40af;
+    background: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    display: inline-block;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+  }
+
+  .tutorial-card:hover .tutorial-action {
+    background: #1e40af;
+    color: white;
+    border-color: #1e40af;
+  }
+
+  /* Plan Link Styles */
+  .plan-link {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: inline-block;
+  }
+
+  .plan-link:hover {
+    background: #dbeafe;
+    color: #1e40af;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Module 1: Understanding Construction Plans</h1>
+    <p>Supplementary Reference Notes - Task 6: Project Planning</p>
+  </header>  
+  
+  <!-- <div style="text-align: center; margin: 1rem auto;">
+    <a href="../evidence-central-index.html" class="index-map-btn" style="
+      display: inline-block;
+      background: linear-gradient(135deg, #28a745 0%, #5cc56f 100%);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+      transition: all 0.3s ease;
+    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(40, 167, 69, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(40, 167, 69, 0.3)'">
+      Index Map
+    </a>
+  </div> -->
+  
+  <main>
+    <a href="../index.html" class="back-link">← Back to Home Page</a>
+    <a href="task6_index.html" class="back-link">← Back to Task 6 Modules</a>
+    <h2>Types of Plans and Their Functions</h2>
+    <p>Construction projects use a set of plans, each with a specific purpose.</p>
+    <div class="plan-type"><strong>Construction Plans:</strong> The complete collection of all drawings for a project (site, floor, elevation, etc.).</div>
+    <div class="plan-type"><strong>Location Plan:</strong> Shows the project's location in relation to its surroundings, including street names and block numbers.</div>
+    <div class="plan-type"><strong>Site Plan:</strong> A detailed aerial view of the entire property block. It shows boundary dimensions, setbacks, building position, orientation (North pointer), contour lines, and locations of services like sewer and stormwater. <a href="Task6_Plan_Reading_Tutorial.html#site-plan" class="plan-link">→ See example site plan</a></div>
+    <div class="plan-type"><strong>Floor Plan:</strong> A "bird's-eye view" of a building without the roof. It shows room layouts, internal/external dimensions, wall thicknesses, and the location of doors and windows. <a href="Task6_Plan_Reading_Tutorial.html#floor-plan" class="plan-link">→ See example floor plan</a></div>
+    <div class="plan-type"><strong>Elevation Plan:</strong> An exterior view of one side of the building (e.g., North Elevation). It shows finished appearance, materials, roof pitch, and window/door heights. <a href="Task6_Plan_Reading_Tutorial.html#elevation" class="plan-link">→ See example elevation</a></div>
+    <div class="plan-type"><strong>Section Plan:</strong> A view showing a "slice" through the building. It provides structural details of footings, walls, and the roof frame.</div>
+    <div class="plan-type"><strong>Detail Plan:</strong> A magnified drawing of a specific, complex area (like a footing or window connection) to provide clearer instructions on assembly and dimensions.</div>
+    <div class="plan-type"><strong>Environmental Plan:</strong> Outlines actions to manage environmental impacts, such as erosion control, waste management, and air/noise quality.</div>
+
+    <h2>Key Features of Plans</h2>
+    <ul>
+      <li><strong>Title Block:</strong> Located at the bottom right of every drawing, it contains critical information: drawing number, project name, architect/designer name, scale, date, and the **revision number/letter**.</li>
+      <li><strong>Revision/Amendment Register:</strong> This tracks all changes made to the plans. It's crucial for ensuring everyone is working from the most current version. If there's a discrepancy, always check the revision register and title block, then report it to your supervisor.</li>
+      <li><strong>Legend:</strong> Explains what the various symbols and abbreviations used on the plan mean (e.g., symbols for doors, windows, power points).</li>
+      <li><strong>North Pointer:</strong> A symbol (usually an arrow) that shows the orientation of the plan, allowing you to align it with the actual site. <a href="Task6_Plan_Reading_Tutorial.html#site-plan" class="plan-link">→ Find north pointer on site plan</a></li>
+      <li><strong>Notes:</strong> Provide extra detail that can't be shown in the drawing itself, such as framing requirements, insulation types, or specific installation instructions.</li>
+    </ul>
+
+    <h2>Specifications</h2>
+    <p>The project specification is a written document that accompanies the plans. It forms part of the legal contract and details:</p>
+    <ul>
+      <li>The quality of work to be carried out.</li>
+      <li>The specific materials to be used.</li>
+      <li>How materials are to be installed.</li>
+    </ul>
+    <p>Products like fasteners, coatings, and adhesives are often supplied with their own manufacturer's specifications.</p>
+
+
+
+    <h2>Common Abbreviations & Symbols</h2>
+    <ul>
+      <li><strong>FFL:</strong> Finished Floor Level</li>
+      <li><strong>BK:</strong> Brick</li>
+      <li><strong>SWD:</strong> Stormwater Drain</li>
+      <li><strong>DPC:</strong> Damp-Proof Course</li>
+      <li>You must also be able to identify symbols for features like toilets, showers, basins, doors, and different material types (e.g., timber frame vs. brick).</li>
+    </ul>
+
+    <h2>Ready to Practice Plan Reading?</h2>
+    <p>Now that you understand the basics, let's apply what you've learned with a real construction project.</p>
+    
+    <div class="tutorial-card-section">
+      <a href="Task6_Plan_Reading_Tutorial.html" class="tutorial-card-link">
+        <div class="tutorial-card">
+          <div class="tutorial-icon">📐</div>
+          <div class="tutorial-title">Interactive Plan Reading Tutorial</div>
+          <div class="tutorial-subtitle">Granny Flat House Plans - 83 Viking Street, Campsie</div>
+          <div class="tutorial-description">Practice identifying site plans, floor plans, and elevations with interactive guidance on where to find key features on real construction drawings.</div>
+          <div class="tutorial-action">Start Interactive Tutorial →</div>
+        </div>
+      </a>
+      
+      <a href="Plan_Symbols_Tutorial.html" class="tutorial-card-link">
+        <div class="tutorial-card">
+          <div class="tutorial-icon">🔤</div>
+          <div class="tutorial-title">Plan Symbols Tutorial</div>
+          <div class="tutorial-subtitle">Learn Construction Drawing Symbols</div>
+          <div class="tutorial-description">Master the essential symbols used in construction plans including walls, doors, electrical, plumbing, and more.</div>
+          <div class="tutorial-action">Learn Symbols →</div>
+        </div>
+      </a>
+    </div>
+    
+      <p><em>Unit: CPCCCM2005 - Use construction tools and equipment</em></p>
+      
+      <div class="module-nav">
+      <a href="task6_index.html">← Back to Modules</a>
+              <a href="module2.html">Next Module →</a>
+    </div>
+  </main>
+  <footer>&copy; 2025 Construction VET Resources</footer>
+  <script src="../search.js"></script>
+  
+  <script>
+    // Feature Guide Content
+    const featureGuides = {
+      'site-plan': {
+        title: 'Site Plan Elements - Where to Find Them',
+        content: `
+          <div class="feature-guide">
+            <h4>Site Plan Elements Location Guide</h4>
+            <p>Open the Granny Flat plans and look for the <strong>Site Plan</strong> (usually the first or second page). Here's exactly where to find each element:</p>
+            
+            <div class="plan-section">
+              <h5>1. Property Boundaries and Dimensions</h5>
+              <div class="location-guide">
+                <strong>🔍 Look for:</strong>
+                <ul>
+                  <li>Thick black lines around the entire property perimeter</li>
+                  <li>Dimension numbers (e.g., "12.5m", "8.2m") along each boundary line</li>
+                  <li>These are usually shown in meters and appear as small text near the boundary lines</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="plan-section">
+              <h5>2. Building Setbacks and Positioning</h5>
+              <div class="location-guide">
+                <strong>🔍 Look for:</strong>
+                <ul>
+                  <li>Distance measurements from the building outline to property boundaries</li>
+                  <li>Usually shown as arrows with dimension lines</li>
+                  <li>Common setback areas: front yard, side yards, and rear yard</li>
+                  <li>Look for text like "Setback: 1.5m" or similar</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="plan-section">
+              <h5>3. North Orientation Arrow</h5>
+              <div class="location-guide">
+                <strong>🔍 Look for:</strong>
+                <ul>
+                  <li>A compass rose symbol (usually in the top-right or bottom-right corner)</li>
+                  <li>Shows "N" pointing north, "S" pointing south, etc.</li>
+                  <li>May be a simple arrow pointing north with "N" label</li>
+                  <li>This is crucial for orienting the plan on site</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="plan-section">
+              <h5>4. Service Locations</h5>
+              <div class="location-guide">
+                <strong>🔍 Look for:</strong>
+                <ul>
+                  <li>Sewer connections: usually shown as "S" or "SEW" with a line to the street</li>
+                  <li>Stormwater drains: shown as "SW" or "STORM" with drainage lines</li>
+                  <li>Water connections: shown as "W" or "WATER"</li>
+                  <li>These are typically shown as symbols or abbreviations with connecting lines</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="visual-cue">
+              <strong>💡 Pro Tip:</strong>
+              <p>Start by finding the North arrow first, then orient yourself. Look for the property boundaries (thick lines), then find the building outline within those boundaries. The setbacks will show you how far the building must be from each boundary.</p>
+            </div>
+          </div>
+        `
+      },
+      'floor-plan': {
+        title: 'Floor Plan Elements - Where to Find Them',
+        content: `
+          <div class="feature-guide">
+            <h4>Floor Plan Elements Location Guide</h4>
+            <p>Look for the <strong>Floor Plan</strong> in the Granny Flat plans (usually shows the layout of rooms from above). Here's exactly where to find each element:</p>
+            
+            <div class="plan-section">
+              <h5>1. Room Layouts and Dimensions</h5>
+              <div class="location-guide">
+                <strong>🔍 Look for:</strong>
+                <ul>
+                  <li>Room names written in the center of each room (e.g., "BEDROOM", "BATHROOM", "KITCHEN")</li>
+                  <li>Dimension lines between walls showing room lengths and widths</li>
+                  <li>Overall building dimensions around the perimeter</li>
+                  <li>Room areas may be shown in square meters</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="plan-section">
+              <h5>2. Door and Window Locations</h5>
+              <div class="location-guide">
+                <strong>🔍 Look for:</strong>
+                <ul>
+                  <li>Doors: shown as arcs or lines that swing open (usually labeled "D" or "DOOR")</li>
+                  <li>Windows: shown as thin lines with breaks in the wall (usually labeled "W" or "WINDOW")</li>
+                  <li>Door swings: the arc shows which way the door opens</li>
+                  <li>Window types: may show different symbols for different window styles</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="plan-section">
+              <h5>3. Wall Thicknesses and Materials</h5>
+              <div class="location-guide">
+                <strong>🔍 Look for:</strong>
+                <ul>
+                  <li>Wall thickness: shown by the space between parallel lines</li>
+                  <li>External walls: usually thicker than internal walls</li>
+                  <li>Material notes: may show "BRICK", "TIMBER FRAME", or similar</li>
+                  <li>Wall construction details in the specifications section</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="plan-section">
+              <h5>4. Fixture Placements</h5>
+              <div class="location-guide">
+                <strong>🔍 Look for:</strong>
+                <ul>
+                  <li>Kitchen: sink, stove, refrigerator symbols</li>
+                  <li>Bathroom: toilet, shower, basin symbols</li>
+                  <li>Bedroom: closet or wardrobe areas</li>
+                  <li>Living areas: electrical outlet and switch symbols</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="visual-cue">
+              <strong>💡 Pro Tip:</strong>
+              <p>Start by identifying the main rooms, then look for the circulation paths (how you move between rooms). Check door swings to understand traffic flow. Look for the kitchen and bathroom fixtures as they're usually the most detailed.</p>
+            </div>
+          </div>
+        `
+      },
+      'elevation': {
+        title: 'Elevation Elements - Where to Find Them',
+        content: `
+          <div class="feature-guide">
+            <h4>Elevation Elements Location Guide</h4>
+            <p>Look for the <strong>Elevation Plans</strong> in the Granny Flat plans (shows the building from the side - like a photograph). Here's exactly where to find each element:</p>
+            
+            <div class="plan-section">
+              <h5>1. External Finishes and Materials</h5>
+              <div class="location-guide">
+                <strong>🔍 Look for:</strong>
+                <ul>
+                  <li>Material notes written on the elevation (e.g., "BRICK", "WEATHERBOARD", "RENDER")</li>
+                  <li>Different shading or hatching patterns for different materials</li>
+                  <li>Finish specifications in the notes section</li>
+                  <li>Color or texture descriptions if provided</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="plan-section">
+              <h5>2. Roof Pitch and Design</h5>
+              <div class="location-guide">
+                <strong>🔍 Look for:</strong>
+                <ul>
+                  <li>Roof pitch: shown as a ratio (e.g., "1:4" or "25°")</li>
+                  <li>Roof shape: gable, hip, or skillion roof</li>
+                  <li>Eave overhangs: distance the roof extends beyond the walls</li>
+                  <li>Roof material: may show "TILES", "COLORBOND", or similar</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="plan-section">
+              <h5>3. Window and Door Heights</h5>
+              <div class="location-guide">
+                <strong>🔍 Look for:</strong>
+                <ul>
+                  <li>Window heights: measured from ground level or floor level</li>
+                  <li>Door heights: usually standard (2.1m or 2.4m)</li>
+                  <li>Window sills: height from ground to bottom of window</li>
+                  <li>Head heights: height from ground to top of window/door</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="plan-section">
+              <h5>4. Overall Building Appearance</h5>
+              <div class="location-guide">
+                <strong>🔍 Look for:</strong>
+                <ul>
+                  <li>Building height: total height from ground to roof peak</li>
+                  <li>Proportions: how the building looks overall</li>
+                  <li>Architectural features: porches, verandas, decorative elements</li>
+                  <li>Relationship to ground level: may show finished floor level (FFL)</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="visual-cue">
+              <strong>💡 Pro Tip:</strong>
+              <p>Compare the elevation with the floor plan to understand how the 2D layout translates to 3D appearance. Look for the North arrow to know which direction you're viewing. Check the scale to understand the actual dimensions.</p>
+            </div>
+          </div>
+        `
+      }
+    };
+
+    // Modal functionality
+    const modal = document.getElementById('featureModal');
+    const modalContent = document.getElementById('modalContent');
+    const closeBtn = document.querySelector('.close-modal');
+
+    // Add click events to interactive feature items
+    document.querySelectorAll('.feature-item.interactive').forEach(item => {
+      item.addEventListener('click', function() {
+        const featureType = this.getAttribute('data-feature');
+        const guide = featureGuides[featureType];
+        
+        if (guide) {
+          modalContent.innerHTML = guide.content;
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+      });
+    });
+
+    // Close modal when clicking the X
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
+
+    // Close modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && modal.style.display === 'block') {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+  </script>
+</body>
+</html>
+
+

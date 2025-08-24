@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 6 - Plan Reading Tutorial: Granny Flat Example</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #1e40af;
+            color: white;
+            border-color: #1e40af;
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        h2 {
+            color: #1e40af;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #374151;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        .plan-example {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.15);
+            border-color: #3b82f6;
+        }
+
+        .plan-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .plan-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-subtitle {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .plan-description {
+            font-size: 0.9rem;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .feature-item.interactive {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+        }
+
+        .feature-item.interactive:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .feature-item strong {
+            color: #1e40af;
+            display: block;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-item ul {
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+
+        .feature-item li {
+            margin-bottom: 0.5rem;
+            color: #4b5563;
+        }
+
+        .feature-hint {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #1e40af;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Modal Styles */
+        .feature-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease;
+        }
+
+        .close-modal {
+            color: #6b7280;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 1rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: #dc2626;
+        }
+
+        .feature-guide {
+            padding: 2rem;
+            padding-top: 0;
+        }
+
+        .plan-section {
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid #1e40af;
+        }
+
+        .plan-section h5 {
+            color: #1e40af;
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .location-guide {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.75rem 0;
+        }
+
+        .location-guide strong {
+            color: #dc2626;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .location-guide ul {
+            margin: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+
+        .location-guide li {
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .visual-cue {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin: 0.75rem 0;
+        }
+
+        .visual-cue strong {
+            color: #d97706;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Plan Access Styles */
+        .plan-access-section {
+            margin: 2rem 0;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .plan-overview {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .plan-icon-large {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .plan-overview h4 {
+            color: #1e40af;
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .plan-overview p {
+            color: #64748b;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .plan-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .action-card.primary {
+            border-color: #3b82f6;
+        }
+
+        .action-card.secondary {
+            border-color: #10b981;
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .action-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .action-card h5 {
+            color: #1e293b;
+            margin: 0 0 0.75rem 0;
+            font-size: 1.1rem;
+        }
+
+        .action-card p {
+            color: #6b7280;
+            margin: 0 0 1.5rem 0;
+            line-height: 1.5;
+        }
+
+        .action-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .action-card.primary .action-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            color: white;
+        }
+
+        .action-card.primary .action-btn:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .action-card.secondary .action-btn {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+        }
+
+        .action-card.secondary .action-btn:hover {
+            background: linear-gradient(135deg, #047857 0%, #059669 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+        }
+
+        .plan-contents-detail {
+            margin-bottom: 2rem;
+        }
+
+        .plan-contents-detail h4 {
+            color: #1e40af;
+            margin: 0 0 1.5rem 0;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .contents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .content-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .content-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .content-item h5 {
+            color: #1e293b;
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        .content-item p {
+            color: #6b7280;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .plan-usage-guide {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .plan-usage-guide h4 {
+            color: #1e40af;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .usage-steps {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .step-number {
+            background: #1e40af;
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h5 {
+            color: #1e293b;
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        .step-content p {
+            color: #6b7280;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .pdf-instructions {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .pdf-instructions h4 {
+            color: #1e40af;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .pdf-instructions ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
+                 .pdf-instructions li {
+             margin-bottom: 0.5rem;
+             color: #374151;
+         }
+ 
+         /* All Plans Display Styles */
+         .all-plans-section {
+             background: #f8fafc;
+             border: 1px solid #e2e8f0;
+             border-radius: 12px;
+             padding: 2rem;
+             margin: 2rem 0;
+         }
+ 
+         .all-plans-section h4 {
+             color: #1e40af;
+             margin: 0 0 1rem 0;
+             font-size: 1.3rem;
+             text-align: center;
+         }
+ 
+         .all-plans-section p {
+             color: #64748b;
+             text-align: center;
+             margin-bottom: 2rem;
+         }
+ 
+         .plans-grid {
+             display: grid;
+             gap: 2rem;
+             margin-bottom: 2rem;
+         }
+ 
+         .plan-page {
+             background: white;
+             border-radius: 8px;
+             padding: 1.5rem;
+             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+             border: 1px solid #e2e8f0;
+         }
+ 
+         .plan-page h5 {
+             color: #1e293b;
+             margin: 0 0 1rem 0;
+             font-size: 1.1rem;
+             text-align: center;
+         }
+ 
+         .plans-actions {
+             display: flex;
+             gap: 1rem;
+             justify-content: center;
+             flex-wrap: wrap;
+         }
+ 
+         .plans-close-btn {
+             background: #6b7280;
+             color: white;
+             border: none;
+             padding: 0.75rem 1.5rem;
+             border-radius: 8px;
+             font-weight: 600;
+             cursor: pointer;
+             transition: all 0.3s ease;
+         }
+ 
+         .plans-close-btn:hover {
+             background: #4b5563;
+             transform: translateY(-2px);
+         }
+ 
+         .plans-download-btn {
+             background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+             color: white;
+             padding: 0.75rem 1.5rem;
+             border-radius: 8px;
+             text-decoration: none;
+             font-weight: 600;
+             transition: all 0.3s ease;
+             box-shadow: 0 2px 4px rgba(5, 150, 105, 0.3);
+         }
+ 
+         .plans-download-btn:hover {
+             background: linear-gradient(135deg, #047857 0%, #059669 100%);
+             transform: translateY(-2px);
+             box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4);
+         }
+ 
+         @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .plan-grid, .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+            
+            .plan-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .contents-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-number {
+                align-self: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Plan Reading Tutorial</h1>
+            <p>Interactive Granny Flat Plan Analysis - 83 Viking Street, Campsie</p>
+        </header>
+
+        <main>
+            <a href="module1.html" class="back-link">Back to Module 1</a>
+
+            <h2>Interactive Plan Reading Activity</h2>
+            <p>Now let's apply what we've learned by examining a real construction project - a Granny Flat at 83 Viking Street, Campsie. This practical example will help you understand how all the plan elements work together.</p>
+            
+            <div class="plan-example">
+                <h3>Project Overview</h3>
+                <p><strong>Project:</strong> Granny Flat Construction<br>
+                <strong>Location:</strong> 83 Viking Street, Campsie<br>
+                <strong>Type:</strong> Detached secondary dwelling</p>
+                
+                <h3>Available Plans</h3>
+                <p>Access the complete Granny Flat construction plans below. These plans contain all the technical drawings and specifications needed for the project.</p>
+                
+                <!-- Plan Access Section -->
+                <div class="plan-access-section">
+                    <div class="plan-overview">
+                        <div class="plan-icon-large">🏠</div>
+                        <h4>Granny Flat Construction Plans - DA01</h4>
+                        <p><strong>Project:</strong> 83 Viking Street, Campsie<br>
+                        <strong>Documentation:</strong> Complete construction set including site plans, floor plans, elevations, and specifications</p>
+                    </div>
+                    
+                                         <div class="plan-actions">
+                         <div class="action-card primary">
+                             <div class="action-icon">🔍</div>
+                             <h5>View All Plans</h5>
+                             <p>See every page of the construction plans displayed as images for immediate viewing</p>
+                             <button onclick="showAllPlans()" class="action-btn">
+                                 View All Plans
+                             </button>
+                         </div>
+                         
+                         <div class="action-card secondary">
+                             <div class="action-icon">📥</div>
+                             <h5>Download Full Plans</h5>
+                             <p>Save the complete PDF to your device for offline viewing and printing</p>
+                             <a href="../DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE.pdf" download class="action-btn">
+                                 Download PDF
+                             </a>
+                         </div>
+                     </div>
+                     
+                     <!-- All Plans Display Section (Hidden by default) -->
+                     <div id="allPlans" class="all-plans-section" style="display: none;">
+                         <h4>📋 Complete Construction Plans - All Pages</h4>
+                         <p><em>Scroll through all pages of the Granny Flat construction plans. Each image shows a complete plan page.</em></p>
+                         
+                         <div class="plans-grid">
+                             <div class="plan-page">
+                                 <h5>Page 1 - Title & Site Plan</h5>
+                                 <img src="../plans/DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE_Page_01.jpg" alt="Page 1 - Title & Site Plan" style="width: 100%; margin-bottom: 1rem; border: 1px solid #ccc;">
+                             </div>
+                             
+                             <div class="plan-page">
+                                 <h5>Page 2 - Site Plan Details</h5>
+                                 <img src="../plans/DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE_Page_02.jpg" alt="Page 2 - Site Plan Details" style="width: 100%; margin-bottom: 1rem; border: 1px solid #ccc;">
+                             </div>
+                             
+                             <div class="plan-page">
+                                 <h5>Page 3 - Floor Plan</h5>
+                                 <img src="../plans/DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE_Page_03.jpg" alt="Page 3 - Floor Plan" style="width: 100%; margin-bottom: 1rem; border: 1px solid #ccc;">
+                             </div>
+                             
+                             <div class="plan-page">
+                                 <h5>Page 4 - Floor Plan Details</h5>
+                                 <img src="../plans/DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE_Page_04.jpg" alt="Page 4 - Floor Plan Details" style="width: 100%; margin-bottom: 1rem; border: 1px solid #ccc;">
+                             </div>
+                             
+                             <div class="plan-page">
+                                 <h5>Page 5 - Elevations</h5>
+                                 <img src="../plans/DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE_Page_05.jpg" alt="Page 5 - Elevations" style="width: 100%; margin-bottom: 1rem; border: 1px solid #ccc;">
+                             </div>
+                             
+                             <div class="plan-page">
+                                 <h5>Page 6 - Elevation Details</h5>
+                                 <img src="../plans/DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE_Page_06.jpg" alt="Page 6 - Elevation Details" style="width: 100%; margin-bottom: 1rem; border: 1px solid #ccc;">
+                             </div>
+                             
+                             <div class="plan-page">
+                                 <h5>Page 7 - Sections</h5>
+                                 <img src="../plans/DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE_Page_07.jpg" alt="Page 7 - Sections" style="width: 100%; margin-bottom: 1rem; border: 1px solid #ccc;">
+                             </div>
+                             
+                             <div class="plan-page">
+                                 <h5>Page 8 - Construction Details</h5>
+                                 <img src="../plans/DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE_Page_08.jpg" alt="Page 8 - Construction Details" style="width: 100%; margin-bottom: 1rem; border: 1px solid #ccc;">
+                             </div>
+                             
+                             <div class="plan-page">
+                                 <h5>Page 9 - Joinery Details</h5>
+                                 <img src="../plans/DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE_Page_09.jpg" alt="Page 9 - Joinery Details" style="width: 100%; margin-bottom: 1rem; border: 1px solid #ccc;">
+                             </div>
+                             
+                             <div class="plan-page">
+                                 <h5>Page 10 - Specifications</h5>
+                                 <img src="../plans/DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE_Page_10.jpg" alt="Page 10 - Specifications" style="width: 100%; margin-bottom: 1rem; border: 1px solid #ccc;">
+                             </div>
+                             
+                             <div class="plan-page">
+                                 <h5>Page 11 - Schedules</h5>
+                                 <img src="../plans/DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE_Page_11.jpg" alt="Page 11 - Schedules" style="width: 100%; margin-bottom: 1rem; border: 1rem; border: 1px solid #ccc;">
+                             </div>
+                             
+                             <div class="plan-page">
+                                 <h5>Page 12 - Additional Details</h5>
+                                 <img src="../plans/DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE_Page_12.jpg" alt="Page 12 - Additional Details" style="width: 100%; margin-bottom: 1rem; border: 1px solid #ccc;">
+                             </div>
+                         </div>
+                         
+                         <div class="plans-actions">
+                             <button onclick="hideAllPlans()" class="plans-close-btn">Close Plans</button>
+                             <a href="../DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE.pdf" download class="plans-download-btn">
+                                 📥 Download Complete PDF
+                             </a>
+                         </div>
+                     </div>
+                    
+                    <div class="plan-contents-detail">
+                        <h4>📋 What's Included in These Plans:</h4>
+                        <div class="contents-grid">
+                            <div class="content-item">
+                                <div class="content-icon">🗺️</div>
+                                <h5>Site Plan</h5>
+                                <p>Property boundaries, setbacks, site layout, and service connections</p>
+                            </div>
+                            <div class="content-item">
+                                <div class="content-icon">🏗️</div>
+                                <h5>Floor Plans</h5>
+                                <p>Room layouts, dimensions, door/window locations, and wall construction</p>
+                            </div>
+                            <div class="content-item">
+                                <div class="content-icon">🏛️</div>
+                                <h5>Elevations</h5>
+                                <p>External appearance from all sides, materials, and finishes</p>
+                            </div>
+                            <div class="content-item">
+                                <div class="content-icon">✂️</div>
+                                <h5>Sections</h5>
+                                <p>Cut-through views showing internal structure and construction details</p>
+                            </div>
+                            <div class="content-item">
+                                <div class="content-icon">📏</div>
+                                <h5>Details</h5>
+                                <p>Construction specifications, joinery details, and technical drawings</p>
+                            </div>
+                            <div class="content-item">
+                                <div class="content-icon">📋</div>
+                                <h5>Schedules</h5>
+                                <p>Door, window, and finish schedules with specifications</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-usage-guide">
+                        <h4>💡 How to Use These Plans:</h4>
+                        <div class="usage-steps">
+                                                         <div class="step">
+                                 <div class="step-number">1</div>
+                                 <div class="step-content">
+                                     <h5>View All Plans</h5>
+                                     <p>Click "View All Plans" to see every page of the construction plans displayed as images</p>
+                                 </div>
+                             </div>
+                                                         <div class="step">
+                                 <div class="step-number">2</div>
+                                 <div class="step-content">
+                                     <h5>Download Full Plans</h5>
+                                     <p>Use the download option to get the complete PDF for detailed viewing and printing</p>
+                                 </div>
+                             </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h5>Practice Reading</h5>
+                                    <p>Use the interactive guides below to identify key features and practice your plan reading skills</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Plan Reading Practice Activities</h3>
+                <p>Use these plans to practice the following skills:</p>
+                <ul>
+                    <li><strong>Title Block Analysis:</strong> Identify the drawing number, project name, scale, and revision information</li>
+                    <li><strong>Site Orientation:</strong> Use the North pointer to orient the site plan with the actual location</li>
+                    <li><strong>Dimension Verification:</strong> Practice measuring and verifying dimensions shown on the plans</li>
+                    <li><strong>Symbol Recognition:</strong> Identify doors, windows, fixtures, and material symbols</li>
+                    <li><strong>Specification Reading:</strong> Understand material requirements and installation methods</li>
+                </ul>
+                
+                <h3>Key Features to Identify</h3>
+                <p>Click on any feature below to see exactly where to find it on the plans and what to look for:</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-item interactive" data-feature="site-plan">
+                        <strong>Site Plan Elements:</strong>
+                        <ul>
+                            <li>Property boundaries and dimensions</li>
+                            <li>Building setbacks and positioning</li>
+                            <li>North orientation arrow</li>
+                            <li>Service locations (sewer, stormwater)</li>
+                        </ul>
+                        <div class="feature-hint">Click to see where to find these on the site plan</div>
+                    </div>
+                    <div class="feature-item interactive" data-feature="floor-plan">
+                        <strong>Floor Plan Elements:</strong>
+                        <ul>
+                            <li>Room layouts and dimensions</li>
+                            <li>Door and window locations</li>
+                            <li>Wall thicknesses and materials</li>
+                            <li>Fixture placements</li>
+                        </ul>
+                        <div class="feature-hint">Click to see where to find these on the floor plan</div>
+                    </div>
+                    <div class="feature-item interactive" data-feature="elevation">
+                        <strong>Elevation Elements:</strong>
+                        <ul>
+                            <li>External finishes and materials</li>
+                            <li>Roof pitch and design</li>
+                            <li>Window and door heights</li>
+                            <li>Overall building appearance</li>
+                        </ul>
+                        <div class="feature-hint">Click to see where to find these on the elevation</div>
+                    </div>
+                </div>
+                
+                <!-- Interactive Feature Guide Modal -->
+                <div id="featureModal" class="feature-modal">
+                    <div class="modal-content">
+                        <span class="close-modal">&times;</span>
+                        <div id="modalContent"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+         <script>
+         // All Plans Display Functions
+         function showAllPlans() {
+             document.getElementById('allPlans').style.display = 'block';
+         }
+         
+         function hideAllPlans() {
+             document.getElementById('allPlans').style.display = 'none';
+         }
+         
+         // Interactive feature guides
+         const featureGuides = {
+            'site-plan': `
+                <div class="feature-guide">
+                    <h3>Site Plan Elements - Where to Find Them</h3>
+                    
+                    <div class="plan-section">
+                        <h5>Property Boundaries & Dimensions</h5>
+                        <div class="location-guide">
+                            <strong>Look for:</strong>
+                            <ul>
+                                <li>Thick black lines showing property edges</li>
+                                <li>Dimension lines with measurements (e.g., "20.12m")</li>
+                                <li>Corner coordinates or survey marks</li>
+                            </ul>
+                        </div>
+                        <div class="visual-cue">
+                            <strong>Pro Tip:</strong> Property boundaries are usually the outermost lines on the site plan, often with dimension callouts.
+                        </div>
+                    </div>
+                    
+                    <div class="plan-section">
+                        <h5>Building Setbacks & Positioning</h5>
+                        <div class="location-guide">
+                            <strong>Look for:</strong>
+                            <ul>
+                                <li>Dashed lines showing minimum distances from boundaries</li>
+                                <li>Setback dimensions (e.g., "3.0m setback")</li>
+                                <li>Building outline positioned within setback lines</li>
+                            </ul>
+                        </div>
+                        <div class="visual-cue">
+                            <strong>Pro Tip:</strong> Setbacks ensure adequate space for access, privacy, and building services.
+                        </div>
+                    </div>
+                    
+                    <div class="plan-section">
+                        <h5>North Orientation Arrow</h5>
+                        <div class="location-guide">
+                            <strong>Look for:</strong>
+                            <ul>
+                                <li>Arrow symbol pointing north (usually in corner or legend)</li>
+                                <li>May be labeled "N" or "NORTH"</li>
+                                <li>Sometimes includes magnetic declination information</li>
+                            </ul>
+                        </div>
+                        <div class="visual-cue">
+                            <strong>Pro Tip:</strong> The north arrow helps you understand the building's orientation for solar access and prevailing winds.
+                        </div>
+                    </div>
+                    
+                    <div class="plan-section">
+                        <h5>Service Locations</h5>
+                        <div class="location-guide">
+                            <strong>Look for:</strong>
+                            <ul>
+                                <li>Circles or symbols marked "S" (sewer), "W" (water), "E" (electrical)</li>
+                                <li>Connection lines from building to service points</li>
+                                <li>Manholes, pits, or utility boxes shown as rectangles/circles</li>
+                            </ul>
+                        </div>
+                        <div class="visual-cue">
+                            <strong>Pro Tip:</strong> Service connections must comply with local authority requirements and easement restrictions.
+                        </div>
+                    </div>
+                </div>
+            `,
+            'floor-plan': `
+                <div class="feature-guide">
+                    <h3>Floor Plan Elements - Where to Find Them</h3>
+                    
+                    <div class="plan-section">
+                        <h5>Room Layouts & Dimensions</h5>
+                        <div class="location-guide">
+                            <strong>Look for:</strong>
+                            <ul>
+                                <li>Room labels (e.g., "BEDROOM 1", "KITCHEN", "BATHROOM")</li>
+                                <li>Dimension lines showing room sizes</li>
+                                <li>Overall building dimensions on exterior walls</li>
+                            </ul>
+                        </div>
+                        <div class="visual-cue">
+                            <strong>Pro Tip:</strong> Room dimensions help verify compliance with Building Code minimum sizes and accessibility requirements.
+                        </div>
+                    </div>
+                    
+                    <div class="plan-section">
+                        <h5>Door & Window Locations</h5>
+                        <div class="location-guide">
+                            <strong>Look for:</strong>
+                            <ul>
+                                <li>Door symbols: gaps in walls with swing arcs</li>
+                                <li>Window symbols: double lines in walls with sill lines</li>
+                                <li>Door/window schedules with sizes and specifications</li>
+                            </ul>
+                        </div>
+                        <div class="visual-cue">
+                            <strong>Pro Tip:</strong> Door swings show the direction doors open - important for accessibility and emergency egress.
+                        </div>
+                    </div>
+                    
+                    <div class="plan-section">
+                        <h5>Wall Thicknesses & Materials</h5>
+                        <div class="location-guide">
+                            <strong>Look for:</strong>
+                            <ul>
+                                <li>Different line weights: thick for exterior walls, thinner for interior</li>
+                                <li>Wall construction notes or hatching patterns</li>
+                                <li>Material legends explaining wall types</li>
+                            </ul>
+                        </div>
+                        <div class="visual-cue">
+                            <strong>Pro Tip:</strong> Exterior walls are typically thicker (150-200mm) than interior walls (90-110mm) due to insulation requirements.
+                        </div>
+                    </div>
+                    
+                    <div class="plan-section">
+                        <h5>Fixture Placements</h5>
+                        <div class="location-guide">
+                            <strong>Look for:</strong>
+                            <ul>
+                                <li>Kitchen fixtures: sink, cooktop, refrigerator space</li>
+                                <li>Bathroom fixtures: toilet, basin, shower/bath symbols</li>
+                                <li>Built-in furniture: wardrobes, benches, storage</li>
+                            </ul>
+                        </div>
+                        <div class="visual-cue">
+                            <strong>Pro Tip:</strong> Fixture locations show plumbing and electrical rough-in requirements for construction planning.
+                        </div>
+                    </div>
+                </div>
+            `,
+            'elevation': `
+                <div class="feature-guide">
+                    <h3>Elevation Elements - Where to Find Them</h3>
+                    
+                    <div class="plan-section">
+                        <h5>External Finishes & Materials</h5>
+                        <div class="location-guide">
+                            <strong>Look for:</strong>
+                            <ul>
+                                <li>Material callouts and hatching patterns</li>
+                                <li>Finish schedules listing materials and colors</li>
+                                <li>Texture representations (brick, weatherboard, render)</li>
+                            </ul>
+                        </div>
+                        <div class="visual-cue">
+                            <strong>Pro Tip:</strong> Material selections must comply with local planning controls and bushfire requirements where applicable.
+                        </div>
+                    </div>
+                    
+                    <div class="plan-section">
+                        <h5>Roof Pitch & Design</h5>
+                        <div class="location-guide">
+                            <strong>Look for:</strong>
+                            <ul>
+                                <li>Roof slope indicators (e.g., "22.5°" or "1:4")</li>
+                                <li>Ridge lines and gutter positions</li>
+                                <li>Roofing material specifications</li>
+                            </ul>
+                        </div>
+                        <div class="visual-cue">
+                            <strong>Pro Tip:</strong> Roof pitch affects stormwater drainage and must meet minimum fall requirements for the chosen roofing material.
+                        </div>
+                    </div>
+                    
+                    <div class="plan-section">
+                        <h5>Window & Door Heights</h5>
+                        <div class="location-guide">
+                            <strong>Look for:</strong>
+                            <ul>
+                                <li>Dimension lines showing opening heights</li>
+                                <li>Sill and head height markers</li>
+                                <li>Floor and ceiling level indicators</li>
+                            </ul>
+                        </div>
+                        <div class="visual-cue">
+                            <strong>Pro Tip:</strong> Standard residential door height is 2040mm, with windows typically having 900mm sill heights.
+                        </div>
+                    </div>
+                    
+                    <div class="plan-section">
+                        <h5>Overall Building Appearance</h5>
+                        <div class="location-guide">
+                            <strong>Look for:</strong>
+                            <ul>
+                                <li>Building height dimensions and level markers</li>
+                                <li>Architectural features: eaves, verandas, steps</li>
+                                <li>Relationship to ground level and natural grade</li>
+                            </ul>
+                        </div>
+                        <div class="visual-cue">
+                            <strong>Pro Tip:</strong> Elevations show the visual impact and help assess compliance with height restrictions and design guidelines.
+                        </div>
+                    </div>
+                </div>
+            `
+        };
+
+        // Modal functionality
+        const modal = document.getElementById('featureModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeBtn = document.querySelector('.close-modal');
+        const interactiveItems = document.querySelectorAll('.feature-item.interactive');
+
+        // Open modal when clicking on interactive items
+        interactiveItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const feature = this.getAttribute('data-feature');
+                if (featureGuides[feature]) {
+                    modalContent.innerHTML = featureGuides[feature];
+                    modal.style.display = 'block';
+                }
+            });
+        });
+
+        // Close modal when clicking the X
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
