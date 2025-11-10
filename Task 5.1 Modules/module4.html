@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Module 4: Cutting, Cleanup & Quality" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 4: Cutting, Cleanup &amp; Quality</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f9fafb;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: #2563eb;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: #1e40e9;
+    }
+    header {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40e9 100%);
+      color: #fff;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      font-weight: 700;
+    }
+    header p {
+      margin: 0.25rem 0 0 0;
+      font-size: 1.125rem;
+      opacity: 0.9;
+    }
+    main {
+      max-width: 800px;
+      margin: -2rem auto 0 auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 10;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      color: #2563eb;
+    }
+    .back-link:hover {
+      color: #1e40e9;
+    }
+    h2 {
+      font-size: 1.75rem;
+      color: #2563eb;
+      margin-top: 1.5rem;
+      border-bottom: 2px solid #eff6ff;
+      padding-bottom: 0.5rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+      color: #2c3e50;
+      margin-top: 1.25rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    ul li::marker {
+      color: #2563eb;
+    }
+    .checklist {
+      list-style: decimal;
+      padding-left: 1.5rem;
+    }
+    .warning {
+      background: #ffe8e6;
+      border-left: 4px solid #dc3545;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .image-frame {
+      margin: 1.5rem auto;
+      text-align: center;
+      max-width: 420px;
+    }
+    .image-frame img {
+      width: 100%;
+      height: auto;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .image-frame figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .module-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e0e0e0;
+    }
+    .module-nav a {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40e9 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .module-nav a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .copyright-footer {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-top: 3px solid #2563eb;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .copyright-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .copyright-notice {
+      text-align: left;
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      background: #fff;
+      border-radius: 8px;
+      border-left: 4px solid #dc3545;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .copyright-notice p {
+      margin: 0.75rem 0;
+      line-height: 1.6;
+      color: #333;
+    }
+    .copyright-warning {
+      background: #fff3cd;
+      border: 1px solid #ffeaa7;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem !important;
+      color: #856404 !important;
+    }
+    .footer-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #2563eb, transparent);
+      margin: 1.5rem 0;
+    }
+    .footer-info {
+      text-align: center;
+      color: #6c757d;
+      font-size: 0.85rem;
+    }
+    .footer-info p {
+      margin: 0;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Task 5.1 Module 4</h1>
+    <p>Cutting, Cleanup &amp; Quality</p>
+  </header>
+
+  <main>
+    <a href="../index.html" class="back-link">&larr; Back to Home Page</a>
+    <a href="task5_1_index.html" class="back-link">&larr; Back to Task 5.1 Modules</a>
+
+    <h2>Observation Checklist Part E &mdash; Documentation First</h2>
+    <p>Part E occurs after the bricklaying project is complete. Before you touch any equipment, demonstrate that you have reviewed the required references:</p>
+    <ul>
+      <li>Open the <strong>Brick and Block Laying &mdash; Brick and Block Clean Up</strong> section of the New Place Construction Employee Handbook and highlight the PPE, disposal, and storage instructions.</li>
+      <li>Access the operator manuals/SOPs for all plant, tools, and equipment you used (cement mixer, wet saw, grinders). Confirm the shutdown, cleaning, and storage steps that apply.</li>
+      <li>Note any maintenance tasks required (blade changes, lubrication, cord replacements) and prepare the Asset Maintenance Register for completion.</li>
+    </ul>
+
+    <div class="warning">
+      <strong>Teacher instruction prompts (Part E):</strong>
+      <ul>
+        <li>Cleaning the work area and disposing of materials without harming the environment.</li>
+        <li>Disconnecting, cleaning, and storing electrical equipment safely.</li>
+        <li>Cleaning, checking, maintaining, and storing hand tools and plant ready for the next user.</li>
+      </ul>
+      <p>Listen carefully and record each instruction in your site diary. The assessor may ask how you followed the teacher’s directions during cleanup.</p>
+    </div>
+
+    <h2>Wet Cut Brick Saw Procedure</h2>
+    <ol class="checklist">
+      <li>Complete a pre-start: inspect blade condition, guard alignment, water feed, and RCD before energising.</li>
+      <li>Position the saw on stable ground with drainage or containment to capture slurry.</li>
+      <li>Wear the required PPE - eye protection, hearing protection, gloves, and waterproof apron/boots.</li>
+      <li>Adjust the fence or guide to hold the brick or block firmly. Use two hands and keep fingers clear of the blade path.</li>
+      <li>Allow the blade to reach full speed before feeding the material slowly. Do not force the cut.</li>
+      <li>After use, isolate at the switch and unplug, then wash down the bed and remove sludge to the designated waste tub.</li>
+      <li>Sign off the maintenance register if you replaced a blade, repaired a guard, or noted faults needing follow-up.</li>
+    </ol>
+
+    <figure class="image-frame">
+      <img src="../Construction Pictures/Angle Grinder.jpeg" alt="Worker using a guarded angle grinder while wearing eye and hearing protection">
+      <figcaption>Powered cutting requires full PPE, intact guards, and controlled feed speed to prevent kickback.</figcaption>
+    </figure>
+
+    <div class="warning">
+      <strong>Remember:</strong> Silica dust is a respiratory hazard. Ensure the water feed is continuous and never dry-cut masonry on this task without written approval. Log any dust-control issues in the site diary and report them to the assessor immediately.
+    </div>
+
+    <h2>Manual Cutting &amp; Shaping</h2>
+    <p>Where bolsters or grinders are authorised:</p>
+    <ul>
+      <li>Score layout lines on both faces before striking to reduce shattering.</li>
+      <li>Use clamps or a vice to secure small units.</li>
+      <li>Keep spare blades/discs stored dry and inspect for cracks before fitting.</li>
+      <li>Collect offcuts for either reuse (half bricks) or safe disposal - no debris left on scaffolds or access paths.</li>
+    </ul>
+
+    <h2>Cleanup &amp; Waste Segregation</h2>
+    <p>Observation Part E assesses how well you return the work area and equipment to service.</p>
+    <ul>
+      <li>Follow the <em>Brick and Block Clean Up</em> handbook section step-by-step: don the prescribed PPE, isolate equipment, and lay out waste tubs before you start cleaning.</li>
+      <li>Scrape leftover mortar into tubs; never hose it into drains. Hardened waste can be broken down for recycling.</li>
+      <li>Wash mixers, trowels, and boards with minimal water, then dry, oil lightly, and store in the allocated racks.</li>
+      <li>Separate waste streams: bricks/blocks, metals (ties), timber pallets, plastic strapping, and slurry.</li>
+      <li>Complete the operator-manual shutdown steps for each tool (wet saw, grinder, mixer) including cord checks, blade inspections, and guards.</li>
+      <li>Document maintenance performed (blade change, mixer lubrication) in the Asset Maintenance Register.</li>
+    </ul>
+
+    <h2>Final Quality Inspection</h2>
+    <p>Complete a self-check before inviting the assessor to sign off:</p>
+    <ul>
+      <li>Measure wall plumb/level against tolerances. Record readings for your portfolio.</li>
+      <li>Confirm control joints, weep holes, flashings, and damp-proof courses are clean and unobstructed.</li>
+      <li>Brush down the wall and repair any chips or smears. Replace damaged units immediately.</li>
+      <li>Photograph the completed work and upload to your digital log with notes on mortar class, weather, and curing instructions.</li>
+      <li>Close out paperwork: update the maintenance register, file SOP checklists, and note the cleanup completion in your site diary for the assessor.</li>
+    </ul>
+
+    <div class="module-nav">
+      <a href="module3.html">&larr; Previous Module</a>
+      <a href="task5_1_index.html">Back to Modules &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="copyright-footer">
+    <div class="copyright-content">
+      <div class="copyright-notice">
+        <p><strong>Notice:</strong> All images found throughout this site are provided solely for teaching and learning with our enrolled students.</p>
+        <p class="copyright-warning"><strong>WARNING:</strong> This material has been reproduced and communicated to you by or on behalf of Wagga Wagga High School pursuant to Part VB of the Copyright Act 1968 (Cth). This material may be subject to copyright. Any further copying or communication may be the subject of copyright protection under the Act.</p>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-info">
+        <p>&copy; 2025 Wagga Wagga High School - Construction VET Resources</p>
+      </div>
+    </div>
+  </footer>
+  <script src="../search.js"></script>
+</body>
+</html>
+

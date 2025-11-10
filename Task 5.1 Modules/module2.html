@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Module 2: Tools, Equipment & Materials" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 2: Tools, Equipment &amp; Materials</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f9fafb;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: #2563eb;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: #1e40e9;
+    }
+    header {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40e9 100%);
+      color: #fff;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      font-weight: 700;
+    }
+    header p {
+      margin: 0.25rem 0 0 0;
+      font-size: 1.125rem;
+      opacity: 0.9;
+    }
+    main {
+      max-width: 800px;
+      margin: -2rem auto 0 auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 10;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      color: #2563eb;
+    }
+    .back-link:hover {
+      color: #1e40e9;
+    }
+    h2 {
+      font-size: 1.75rem;
+      color: #2563eb;
+      margin-top: 1.5rem;
+      border-bottom: 2px solid #eff6ff;
+      padding-bottom: 0.5rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+      color: #2c3e50;
+      margin-top: 1.25rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    ul li::marker {
+      color: #2563eb;
+    }
+    .image-frame {
+      margin: 1.5rem auto;
+      text-align: center;
+      max-width: 420px;
+    }
+    .image-frame img {
+      width: 100%;
+      height: auto;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .image-frame figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #e0e0e0;
+      padding: 12px 15px;
+      text-align: left;
+    }
+    th {
+      background-color: #eff6ff;
+      font-weight: 600;
+    }
+    tr:nth-child(even) {
+      background-color: #f8fbff;
+    }
+    .info-card {
+      background: #f3f6ff;
+      border-left: 4px solid #2563eb;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+    .module-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e0e0e0;
+    }
+    .module-nav a {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40e9 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .module-nav a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .copyright-footer {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-top: 3px solid #2563eb;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .copyright-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .copyright-notice {
+      text-align: left;
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      background: #fff;
+      border-radius: 8px;
+      border-left: 4px solid #dc3545;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .copyright-notice p {
+      margin: 0.75rem 0;
+      line-height: 1.6;
+      color: #333;
+    }
+    .copyright-warning {
+      background: #fff3cd;
+      border: 1px solid #ffeaa7;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem !important;
+      color: #856404 !important;
+    }
+    .footer-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #2563eb, transparent);
+      margin: 1.5rem 0;
+    }
+    .footer-info {
+      text-align: center;
+      color: #6c757d;
+      font-size: 0.85rem;
+    }
+    .footer-info p {
+      margin: 0;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Task 5.1 Module 2</h1>
+    <p>Tools, Equipment &amp; Materials</p>
+  </header>
+
+  <main>
+    <a href="../index.html" class="back-link">&larr; Back to Home Page</a>
+    <a href="task5_1_index.html" class="back-link">&larr; Back to Task 5.1 Modules</a>
+
+    <h2>Observation Checklist Part B &mdash; Preparation Workflow</h2>
+    <p>Part B is assessed before you start production. You must prove that plans, calculations, plant, and materials are organised exactly as specified in the Task 5.1 student resource.</p>
+    <ul>
+      <li>Access the <strong>teacher-supplied project plans</strong> and quote wall dimensions, bond, and hold points to the assessor.</li>
+      <li>Review <strong>AS 3700</strong> clauses that confirm mortar class, reinforcement, and workmanship tolerances.</li>
+      <li>Read <strong>Section 2 Part A</strong> (bricklaying) and <strong>Section 2 Part B</strong> (blocklaying preparation) work plans so you can explain the sequence, coverage, and inspection requirements.</li>
+      <li>Open the Employee Handbook pages titled <em>Preparing to Lay Bricks and Blocks</em> and <em>Brick and Block Coverage</em>; mark the steps that align with your project.</li>
+      <li>Collect the SOPs/operator manuals for every plant item you intend to use and keep them with the JSA/SWMS bundle.</li>
+    </ul>
+
+    <div class="info-card">
+      <h3>Teacher instruction topics to capture (Part B)</h3>
+      <ul>
+        <li>Project possibilities or variations you may need to accommodate.</li>
+        <li>Preparing plant, tools, and equipment to manufacturer requirements.</li>
+        <li>Setting up a cement mixer safely, including electrical and guarding checks.</li>
+        <li>Setting up raised mortar boards or hop-ups to maintain ergonomic reach.</li>
+        <li>Preparing the work area (barricades, signage, delivery exclusion zones).</li>
+        <li>Checking material quantity and quality as supplies arrive on site.</li>
+      </ul>
+    </div>
+
+    <h2>Core Tool Categories</h2>
+    <p>The observation checklists expect you to select, inspect, and set up the correct tool for each stage of the brick or block project. Use the table below as a refresher.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Examples</th>
+          <th>Key Safety Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Measuring &amp; Marking</td>
+          <td>Tape, folding rule, laser level, brick gauge rod, string line</td>
+          <td>Check calibration, protect glass on levels, keep lines taut and undamaged.</td>
+        </tr>
+        <tr>
+          <td>Mortar Mixing &amp; Handling</td>
+          <td>Cement mixer, shovels, wheelbarrows, mortar boards, hawks</td>
+          <td>Inspect guards, test emergency stop, isolate power before cleaning, use mechanical aids for heavy loads.</td>
+        </tr>
+        <tr>
+          <td>Brick/block Placement</td>
+          <td>Brick trowels, jointers, bolsters, lump hammers, profiles</td>
+          <td>Maintain sharp edges, keep handles free of cracks, wear gloves and eye protection when striking.</td>
+        </tr>
+        <tr>
+          <td>Cutting &amp; Finishing</td>
+          <td>Wet cut brick saw, angle grinder (where approved), rubbing stone, pointing tools</td>
+          <td>Fit water supply and guards, use RCD-protected power, wear eye/ear protection, manage slurry runoff.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Plant Setup &amp; Pre-Start Checks</h2>
+    <p>Before Observation Parts B and C, you must demonstrate correct plant setup. Apply these steps every time:</p>
+    <ul>
+      <li>Confirm the mixer is on level ground, chains/tyres are secure, and the drum rotates freely.</li>
+      <li>Place raised mortar boards close to the work face, supported on stands or trestles rated for the load.</li>
+      <li>Inspect extension leads, RCDs, and hoses for damage before plugging in mixers or wet saws.</li>
+      <li>Tag-out equipment immediately if start/stop buttons stick, guards are missing, or leakages are detected.</li>
+    </ul>
+
+    <figure class="image-frame">
+      <img src="../additional tools/pallet trolley.jpg" alt="Brick pallet trolley and stacked materials staged beside a work area">
+      <figcaption>Stage bricks/blocks on trolleys or pallets to minimise lifts and keep travel paths clear.</figcaption>
+    </figure>
+
+    <div class="info-card">
+      <strong>Tip:</strong> Keep laminated SOPs with the plant. The assessor will often ask you to point out the control or warning section while you work.
+    </div>
+
+    <h2>Observation Checklist Part C &mdash; Brick &amp; Block Preparation</h2>
+    <p>Part C is observed while you prepare bricks, blocks, and plant for production. Demonstrate each of the required reviews and practical actions.</p>
+    <ul>
+      <li>Revisit the project plans plus Section 2 Part A (bricklaying) and Section 2 Part B (blocklaying preparation) so every cut or relocation aligns with the work plan.</li>
+      <li>Open the Employee Handbook pages titled <em>Preparing to Lay Bricks and Blocks</em> and <em>Cutting Bricks and Blocks</em> and verbalise the relevant steps.</li>
+      <li>Access the wet cut brick saw SOP and operator manual; highlight PPE, isolation, and maintenance instructions before you start the saw.</li>
+      <li>Relocate bricks/blocks using mechanical aids or team lifts, keeping stacks stable and travel paths segregated from the public.</li>
+      <li>Brief the assessor on how you will manage slurry, offcuts, and silica dust in line with the work plan and environmental controls.</li>
+    </ul>
+
+    <div class="info-card">
+      <h3>Teacher instruction prompts (Part C)</h3>
+      <ul>
+        <li>Working safely while staging and adjusting materials.</li>
+        <li>Relocating bricks and blocks without breaching manual handling limits.</li>
+        <li>Cutting bricks and blocks with the wet cut brick saw, including water flow and inspection checks.</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h3>Wet cut brick saw essentials</h3>
+      <ul>
+        <li>Inspect the blade for chips, confirm the guard closes fully, and ensure the water feed wets both sides of the blade.</li>
+        <li>Use RCD-protected power, test the emergency stop, and isolate the saw before blade changes or cleaning.</li>
+        <li>Keep a sludge tray or bucket ready so slurry does not enter drains; dispose of waste according to the site environmental plan.</li>
+        <li>Wear eye, ear, and respiratory protection that matches the SOP requirements.</li>
+      </ul>
+    </div>
+
+    <h2>Material Calculations</h2>
+    <p>Being able to justify your quantities is part of "planning to industry standard". Include calculations in your work plan or diary.</p>
+    <ul>
+      <li><strong>Brick coverage:</strong> Number of bricks = wall area (m^2) &times; 50 for standard modular bricks. Add 5% for waste.</li>
+      <li><strong>Block coverage:</strong> Number of 200 series blocks = wall area (m^2) &times; 12.5, plus 3% waste.</li>
+      <li><strong>Mortar yield:</strong> 1 m^3 of mortar (1:4:0.5 mix) lays roughly 1500 bricks or 750 blocks. Track sand moisture - add water slowly until the mix holds its shape on the hawk.</li>
+      <li><strong>Reinforcement &amp; accessories:</strong> Note tie spacing, damp-proof courses, control joints, and lintels specified on the plan.</li>
+    </ul>
+
+    <figure class="image-frame">
+      <img src="../Construction Pictures/Bags of cement.jpeg" alt="Multiple bags of cement stacked neatly on pallets inside a workshop">
+      <figcaption>Store cement and sand in dry, covered zones so mix proportions stay accurate.</figcaption>
+    </figure>
+
+    <h2>Storage &amp; Handling</h2>
+    <p>Observation Parts B and C require safe movement and staging of materials.</p>
+    <ul>
+      <li>Stack bricks and blocks no higher than 1.7 m unless racked or banded; cross-stack to lock packs.</li>
+      <li>Protect pallets from ground moisture with bearers and cover them in wet weather while allowing airflow.</li>
+      <li>Keep separate bins for ties, damp-proof course, and accessories. Label them to speed up checks with the assessor.</li>
+      <li>Plan travel paths for wheelbarrows and mechanical aids. Keep them clear of scaffold access and public interfaces.</li>
+    </ul>
+
+    <div class="module-nav">
+      <a href="module1.html">&larr; Previous Module</a>
+      <a href="module3.html">Next Module &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="copyright-footer">
+    <div class="copyright-content">
+      <div class="copyright-notice">
+        <p><strong>Notice:</strong> All images found throughout this site are provided solely for teaching and learning with our enrolled students.</p>
+        <p class="copyright-warning"><strong>WARNING:</strong> This material has been reproduced and communicated to you by or on behalf of Wagga Wagga High School pursuant to Part VB of the Copyright Act 1968 (Cth). This material may be subject to copyright. Any further copying or communication may be the subject of copyright protection under the Act.</p>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-info">
+        <p>&copy; 2025 Wagga Wagga High School - Construction VET Resources</p>
+      </div>
+    </div>
+  </footer>
+  <script src="../search.js"></script>
+</body>
+</html>

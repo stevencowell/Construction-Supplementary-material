@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brick &amp; Block Observation Tutor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Roboto',sans-serif;background:#f3f5fa}
+    .card{max-width:64rem;margin:auto;background:#fff;border-radius:1rem;box-shadow:0 8px 24px rgba(0,0,0,.08);overflow:hidden}
+    .btn{padding:.6rem 1.4rem;border-radius:.375rem;font-weight:600;transition:background .2s,color .2s;display:inline-block;text-align:center}
+    .btn-primary{background:#2563eb;color:#fff}
+    .btn-primary:hover{background:#1e4ed8;color:#fff}
+    .btn-secondary{background:#6b7280;color:#fff}
+    .btn-secondary:hover{background:#4b5563;color:#fff}
+    .btn-disabled{background:#cbd5e1!important;color:#475569!important;cursor:not-allowed!important}
+    .progress-bg{width:100%;height:.5rem;background:#e2e8f0;border-radius:.375rem;overflow:hidden}
+    .progress-fill{height:100%;background:#2563eb;width:0;transition:width .3s ease}
+    textarea{width:100%;border:2px solid #cbd5e1;border-radius:.375rem;padding:1rem;font-size:1rem;resize:vertical}
+    textarea:focus{outline:none;border-color:#2563eb}
+    details summary{display:flex;justify-content:space-between;cursor:pointer;font-weight:600}
+    details[open] summary svg{transform:rotate(180deg)}
+    .feedback{margin-top:1rem;padding:1rem;border-left:4px solid #16a34a;background:#dcfce7;color:#166534;border-radius:.25rem;display:none}
+    .copyright-footer {background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%);border-top:3px solid #28a745;padding:2rem 1rem;margin-top:3rem;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+    .copyright-content {max-width:1200px;margin:0 auto}
+    .copyright-notice {text-align:left;margin-bottom:1.5rem;padding:1.5rem;background:#fff;border-radius:8px;border-left:4px solid #dc3545;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+    .copyright-notice p {margin:0.75rem 0;line-height:1.6;color:#333}
+    .copyright-warning {background:#fff3cd;border:1px solid #ffeaa7;padding:1rem;border-radius:6px;margin-top:1rem !important;color:#856404 !important}
+    .footer-divider {height:1px;background:linear-gradient(90deg,transparent,#28a745,transparent);margin:1.5rem 0}
+    .footer-info {text-align:center;color:#6c757d;font-size:0.85rem}
+  </style>
+</head>
+<body class="p-4">
+  <div class="card">
+    <div id="content" class="p-6 sm:p-10"></div>
+    <div class="bg-slate-50 border-t border-slate-200 px-6 sm:px-10 py-6 flex flex-col gap-4">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <button id="prev" class="btn btn-secondary">Previous</button>
+        <div class="text-center font-semibold text-blue-700">Topic <span id="stepText"></span> of <span id="totalSteps"></span></div>
+        <button id="next" class="btn btn-primary">Next</button>
+      </div>
+      <div class="progress-bg"><div id="progBar" class="progress-fill"></div></div>
+      <div class="flex justify-center">
+        <a href="task5_1_index.html" class="btn btn-secondary">Back to Task 5.1 Modules</a>
+      </div>
+    </div>
+  </div>
+
+  <template id="scenarioTpl">
+    <div>
+      <h2 class="text-3xl font-bold text-gray-800 mb-4 title"></h2>
+      <p class="text-lg text-gray-700 mb-8 desc"></p>
+      <details class="mb-10 bg-gray-100 rounded-lg p-6 border border-gray-200">
+        <summary>Tutor's Tip <svg class="w-5 h-5 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></summary>
+        <div class="pt-4 text-base text-gray-700 tip"></div>
+      </details>
+      <div class="space-y-12 questions"></div>
+    </div>
+  </template>
+
+  <template id="questionTpl">
+    <div>
+      <p class="font-semibold text-gray-800 mb-2 q"></p>
+      <details class="mb-3 text-sm">
+        <summary class="text-green-700 cursor-pointer">Need a hint?</summary>
+        <div class="pt-1 text-gray-600 hint"></div>
+      </details>
+
+      <textarea rows="4" placeholder="Type your response..."></textarea>
+      <div class="mt-3 flex gap-3 flex-wrap">
+        <button class="btn btn-primary check">Submit</button>
+        <button class="btn btn-secondary reveal">Reveal Model Answer</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </template>
+
+  <script>
+    const scenarios=[
+      {title:'Part A: Workplace Scenarios & JSA',desc:'Observation Part A is delivered as a simulation because some incidents rarely occur, some plant is not always available, and certain hazards (like asbestos identification) must be controlled in a safe environment. Treat it like a real shift and demonstrate paperwork, consultation, and escalation.',tip:'Keep the Employee Handbook open to Equipment Maintenance & Breakdowns plus Material Deliveries, reference the JSA/SWMS bundle, and explain how you brief the crew before work starts.',qs:[
+        {q:'Outline the five steps of the JSA process you will follow for brick and blocklaying.',hint:'Break job into steps, identify hazards, etc.',ans:'1) Select the task; 2) Break it into logical steps; 3) Identify hazards for each step; 4) Nominate controls per the hierarchy/SWMS; 5) Record responsibilities, sign-on, and monitor during the task.'},
+        {q:'Which Employee Handbook sections must you review before Observation Part A and what information do they provide?',hint:'Equipment Maintenance + Material Deliveries.',ans:'Equipment Maintenance & Breakdowns outlines isolating faulty plant, tagging, and escalation. Material Deliveries covers booking windows, exclusion zones, documentation, and communication. Reviewing both lets you cite site-specific expectations during the simulation.'},
+        {q:'A forklift driver arrives early with bricks during the simulation. Describe how you manage the delivery using the Material Deliveries procedure.',hint:'Confirm booking, exclusion zones, paperwork.',ans:'Confirm booking details, mark exclusion zones, appoint a spotter, inspect the load, record delivery dockets, and keep pedestrians/scaffold access clear until the forklift exits, exactly as the handbook requires.'},
+        {q:'The cement mixer failed its electrical test. What documentation do you update after tagging it out?',hint:'Maintenance register.',ans:'Complete the danger tag, isolate power, and update the Maintenance Register/defect log with the date, fault, and person responsible so repairs can be tracked before the mixer returns to service.'}
+      ]},
+      {title:'Part B: Planning & Preparation',desc:'Before Observation Part B you must interpret documentation, capture the teacher briefing, and organise resources so the work area is ready.',tip:'Project plans + AS 3700 + Section 2 Part A/B work plans and SOPs give you all dimensional and quality requirements. Refer to them as you explain your setup.',qs:[
+        {q:'List the minimum documents you must review before starting (cite at least three).',hint:'Plans, AS3700, work plans.',ans:'Teacher-supplied project plans, AS 3700 Masonry Structures, Section 2 Part A (bricklaying) and Part B (blocklaying preparation) work plans, Brick & Block Coverage tables, plus plant SOPs and Employee Handbook extracts relevant to the project.'},
+        {q:'Calculate the number of standard bricks required for a 4.2 m x 2.7 m wall (include 5% waste).',hint:'Area x 50.',ans:'Area 4.2 x 2.7 = 11.34 m². 11.34 x 50 = 567 bricks. Add 5% ≈ 28 bricks, so allow around 595–600 bricks.'},
+        {q:'Describe how you would set up mortar boards and delivery zones to minimise double handling.',hint:'Place close to work face.',ans:'Position raised boards on level ground within reach of the work face, match heights to the work plan, segregate brick versus block stacks on bearers, maintain clear wheelbarrow paths, and mark exclusion zones so deliveries do not block scaffold or emergency access.'},
+        {q:'Which teacher briefing topics must you capture before the assessor signs Part B?',hint:'Project possibilities, plant setup, mixers, hop-ups, area prep, material QA.',ans:'Record the teacher’s guidance on project possibilities/variations, preparing plant/tools, setting up the cement mixer, erecting raised mortar boards or hop-ups, preparing the work area (barricades/signage), and checking material quantity and quality when deliveries arrive.'}
+      ]},
+      {title:'Part C: Materials Handling & Cutting',desc:'The assessor watches you stage materials and operate the wet cut saw during Observation Part C. Show that you have studied the required documents and follow every control.',tip:'Revisit project plans, Section 2 Part A/B, the Employee Handbook (Preparing to Lay Bricks and Blocks + Cutting Bricks and Blocks), and the wet cut saw SOP before touching the plant.',qs:[
+        {q:'Which documents and teacher instructions must you review before Observation Part C begins?',hint:'Project plans, Section 2 parts, handbook, wet saw SOP, teacher prompts.',ans:'Review the project plans, Section 2 Part A (bricklaying) and Part B (block preparation) work plans, the Employee Handbook pages on Preparing to Lay Bricks and Blocks and Cutting Bricks and Blocks, and the wet cut saw SOP/operator manual. Capture the teacher’s instructions on working safely, relocating bricks/blocks, and cutting with the wet saw in your diary.'},
+        {q:'State the PPE required before operating the wet cut brick saw and explain why each item is needed.',hint:'Eyes, ears, gloves, boots.',ans:'Safety glasses/face shield (flying chips), hearing protection (saw noise), gloves (handling units/blade), waterproof boots/apron (slurry), and respiratory protection if mist could carry silica.'},
+        {q:'Explain how you control slurry and offcuts so they do not contaminate stormwater.',hint:'Containment.',ans:'Place the saw over a tray/bund, maintain water flow, direct runoff into tubs, shovel slurry/offcuts into waste bins, and never hose residue into drains—use absorbent pads for spills.'},
+        {q:'Describe a safe method to move 20 solid blocks from storage to the work face with minimum strain.',hint:'Team lift or mechanical aid.',ans:'Use a mechanical aid (brick/block trolley) or team lift, keep stacks at waist height on bearers, clear the travel path, limit manual lifts to guideline weights, and restack neatly at the work face.'}
+      ]},
+      {title:'Part D: Production Activities',desc:'During Observation Part D you lay bricks/blocks while proving compliance with documentation, tolerances, and teacher directions.',tip:'Keep Section 2 Part A, the Employee Handbook (Preparing to Lay, Mixing Mortar, Undertaking Bricklaying, Mortar Joint Finishes), and the cement mixer SOP at hand.',qs:[
+        {q:'Which references must you keep on hand while laying during Part D?',hint:'Plans, Section 2 Part A, handbook extracts, mixer SOP.',ans:'Teacher project plans, Section 2 Part A work plan, the Employee Handbook sections for Preparing to Lay Bricks and Blocks, Mixing Mortar, Undertaking Bricklaying, and Mortar Joint Finishes, plus the cement mixer SOP/operator manual.'},
+        {q:'List the sequence you follow when laying a new course from an existing lead.',hint:'Check line, butter, tap down.',ans:'Check the string line clearance, spread bed mortar, butter the perp joint, place the brick/block, tap down to line/gauge, clean arrises, and repeat while keeping both faces aligned.'},
+        {q:'How do you confirm that the wall remains within +/- 4 mm plumb across 3 m?',hint:'Use level + record.',ans:'Check plumb with a spirit level (or laser) every few courses, record readings in your diary, adjust joints immediately, and present the recorded tolerances to the assessor.'},
+        {q:'Which teacher instruction prompts must you record before laying starts?',hint:'Mixing mortar, loading boards, blending/laying, jointing.',ans:'Document the teacher’s guidance on mixing mortar to specification, loading mortar boards, blending and laying bricks/blocks to the nominated bond, and jointing techniques. Be ready to explain how you applied each instruction.'},
+        {q:'Describe how you communicate issues (e.g., warped bricks) to maintain quality.',hint:'Stop and report.',ans:'Stop using the defective batch, inform the supervisor/assessor immediately, quarantine or label the materials, record the issue in the site diary, and agree on corrective action before resuming.'}
+      ]},
+      {title:'Part E: Cleanup & Maintenance',desc:'After the project you must return the area and equipment to a safe condition, following both the handbook and manufacturer shutdown steps.',tip:'Review the Employee Handbook (Brick and Block Clean Up), each operator manual/SOP, and the teacher’s cleanup instructions before you start.',qs:[
+        {q:'Which references guide your cleanup, and what teacher instructions must you capture?',hint:'Handbook clean up + operator manuals + teacher prompts.',ans:'Use the Employee Handbook section Brick and Block Clean Up plus all relevant operator manuals/SOPs (cement mixer, wet saw, grinders). Record the teacher’s instructions about cleaning/disposal, disconnecting and storing electrical gear, and checking/maintaining tools so you can evidence compliance.'},
+        {q:'Detail the steps for cleaning and storing a cement mixer after use.',hint:'Isolate -> wash -> inspect.',ans:'Isolate power, drain and scrape the drum, add water/aggregate to scour, rinse, inspect blades/drive/cords, dry, apply light oil, coil leads, and store the mixer under cover per the SOP.'},
+        {q:'Explain how you segregate waste streams at the end of the job.',hint:'Separate by material.',ans:'Stack reusable bricks/blocks, send hardened mortar to rubble bins, place steel ties/mesh in scrap metal, stack timber pallets for collection, bag plastic strapping, and capture slurry in tubs for drying/disposal so nothing enters stormwater.'},
+        {q:'Which records do you update once cleanup is complete?',hint:'Maintenance + diary.',ans:'Update the Asset Maintenance Register (noting repairs/blade changes), sign housekeeping/SOP checklists, and record cleanup completion plus outstanding defects in the site diary or observation sheet.'}
+      ]}
+    ];
+
+    const content=document.getElementById('content');
+    const prevBtn=document.getElementById('prev');
+    const nextBtn=document.getElementById('next');
+    const stepTxt=document.getElementById('stepText');
+    const totalTxt=document.getElementById('totalSteps');
+    const progBar=document.getElementById('progBar');
+    let step=0;
+    totalTxt.textContent=scenarios.length;
+
+    function render(){
+      content.innerHTML='';
+      const s=scenarios[step];
+      const tpl=document.getElementById('scenarioTpl').content.cloneNode(true);
+      tpl.querySelector('.title').textContent=s.title;
+      tpl.querySelector('.desc').textContent=s.desc;
+      tpl.querySelector('.tip').textContent=s.tip;
+      const qWrap=tpl.querySelector('.questions');
+      s.qs.forEach(item=>{
+        const q=document.getElementById('questionTpl').content.cloneNode(true);
+        q.querySelector('.q').textContent=item.q;
+        q.querySelector('.hint').textContent=item.hint;
+        const feedback=q.querySelector('.feedback');
+        const textarea=q.querySelector('textarea');
+        q.querySelector('.check').onclick=()=>{
+          feedback.style.display='block';
+          feedback.textContent='Answer recorded. Compare with the model answer if you need reassurance.';
+        };
+        q.querySelector('.reveal').onclick=()=>{
+          feedback.style.display='block';
+          feedback.textContent='Model answer: '+item.ans;
+        };
+        qWrap.appendChild(q);
+      });
+      content.appendChild(tpl);
+      updateNav();
+    }
+
+    function updateNav(){
+      prevBtn.disabled=step===0;
+      nextBtn.disabled=step===scenarios.length-1;
+      prevBtn.classList.toggle('btn-disabled',prevBtn.disabled);
+      nextBtn.classList.toggle('btn-disabled',nextBtn.disabled);
+      stepTxt.textContent=step+1;
+      progBar.style.width=((step+1)/scenarios.length*100)+'%';
+    }
+
+    prevBtn.onclick=()=>{if(step>0){step--;render()}};
+    nextBtn.onclick=()=>{if(step<scenarios.length-1){step++;render()}}; 
+
+    render();
+  </script>
+  <script src="../search.js"></script>
+
+  <footer class="copyright-footer">
+    <div class="copyright-content">
+      <div class="copyright-notice">
+        <p><strong>Notice:</strong> All images found throughout this site are provided solely for teaching and learning with our enrolled students.</p>
+        <p class="copyright-warning"><strong>WARNING:</strong> This material has been reproduced and communicated to you by or on behalf of Wagga Wagga High School pursuant to Part VB of the Copyright Act 1968 (Cth). This material may be subject to copyright. Any further copying or communication may be the subject of copyright protection under the Act.</p>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-info">
+        <p>&copy; 2025 Wagga Wagga High School - Construction VET Resources</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

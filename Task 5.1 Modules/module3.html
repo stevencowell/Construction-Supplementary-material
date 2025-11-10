@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Module 3: Brick & Block Production" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 3: Brick &amp; Block Production</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f9fafb;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: #2563eb;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: #1e40e9;
+    }
+    header {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40e9 100%);
+      color: #fff;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      font-weight: 700;
+    }
+    header p {
+      margin: 0.25rem 0 0 0;
+      font-size: 1.125rem;
+      opacity: 0.9;
+    }
+    main {
+      max-width: 800px;
+      margin: -2rem auto 0 auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 10;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      color: #2563eb;
+    }
+    .back-link:hover {
+      color: #1e40e9;
+    }
+    h2 {
+      font-size: 1.75rem;
+      color: #2563eb;
+      margin-top: 1.5rem;
+      border-bottom: 2px solid #eff6ff;
+      padding-bottom: 0.5rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+      color: #2c3e50;
+      margin-top: 1.25rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    ul li::marker {
+      color: #2563eb;
+    }
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .step-list {
+      list-style: decimal;
+      padding-left: 1.5rem;
+    }
+    .callout {
+      background: #f3f6ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+    }
+    .image-frame {
+      margin: 1.5rem auto;
+      text-align: center;
+      max-width: 420px;
+    }
+    .image-frame img {
+      width: 100%;
+      height: auto;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .image-frame figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #e0e0e0;
+      padding: 12px 15px;
+      text-align: left;
+    }
+    th {
+      background: #eff6ff;
+      font-weight: 600;
+    }
+    .module-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e0e0e0;
+    }
+    .module-nav a {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40e9 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .module-nav a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .copyright-footer {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-top: 3px solid #2563eb;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .copyright-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .copyright-notice {
+      text-align: left;
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      background: #fff;
+      border-radius: 8px;
+      border-left: 4px solid #dc3545;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .copyright-notice p {
+      margin: 0.75rem 0;
+      line-height: 1.6;
+      color: #333;
+    }
+    .copyright-warning {
+      background: #fff3cd;
+      border: 1px solid #ffeaa7;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem !important;
+      color: #856404 !important;
+    }
+    .footer-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #2563eb, transparent);
+      margin: 1.5rem 0;
+    }
+    .footer-info {
+      text-align: center;
+      color: #6c757d;
+      font-size: 0.85rem;
+    }
+    .footer-info p {
+      margin: 0;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Task 5.1 Module 3</h1>
+    <p>Brick &amp; Block Production</p>
+  </header>
+
+  <main>
+    <a href="../index.html" class="back-link">&larr; Back to Home Page</a>
+    <a href="task5_1_index.html" class="back-link">&larr; Back to Task 5.1 Modules</a>
+
+    <h2>Observation Checklist Part D &mdash; Production Requirements</h2>
+    <p>Part D covers the live bricklaying project. Before the assessor signs off, you must show that you have reviewed every planning document and are applying them while you work.</p>
+    <ul>
+      <li>Access the <strong>project plans supplied by your teacher</strong> and confirm wall dimensions, openings, lintels, and control joints.</li>
+      <li>Open <strong>Section 2 Part A &mdash; Work Plan (bricklaying project)</strong> so you can explain the sequence, inspection hold points, and coverage calculations.</li>
+      <li>Re-read the Employee Handbook extracts: <em>Preparing to Lay Bricks and Blocks</em>, <em>Mixing Mortar</em>, <em>Undertaking Bricklaying</em>, and <em>Mortar Joint Finishes</em>. Quote the relevant steps as you complete them.</li>
+      <li>Keep the cement mixer SOP/operator manual with your SWMS. Reference the checklist before every batch, especially guarding, isolation, and cleaning steps.</li>
+    </ul>
+
+    <div class="callout">
+      <h3>Teacher instruction prompts (Part D)</h3>
+      <p>Capture the guidance your teacher provides on:</p>
+      <ul>
+        <li>Mixing mortar to specification.</li>
+        <li>Loading mortar boards and staging materials at height.</li>
+        <li>Blending and laying bricks/blocks to the nominated bond.</li>
+        <li>Jointing brick joints and achieving the required finish.</li>
+      </ul>
+      <p>Document these notes in your site diary or work plan; the assessor may ask how you applied the advice mid-task.</p>
+    </div>
+
+    <h2>Setting Out &amp; Control</h2>
+    <p>Observation Part D starts before the first brick is laid. You must prove that your wall position, levels, and gauges agree with the plan and the Section 2 Part A work instructions.</p>
+    <ul>
+      <li>Establish profiles at corners, plumb them, and confirm the string lines clear the wall face by 3-5 mm.</li>
+      <li>Mark course heights on gauge rods for both bricks and blocks, allowing for damp-proof course, lintel seatings, and joint thickness.</li>
+      <li>Check diagonals for squareness and confirm cavity widths or wall thicknesses match AS 3700 requirements.</li>
+      <li>Record tolerances in your notebook; assessors often ask for the acceptable deviation (for example, +/- 4 mm in 3 m for plumb).</li>
+    </ul>
+
+    <figure class="image-frame">
+      <img src="../additional tools/stringline.jpg" alt="Bricklayer adjusting a stringline between two timber profiles">
+      <figcaption>Taut stringlines and well-braced profiles keep each course straight.</figcaption>
+    </figure>
+
+    <h2>Mortar Mixing Excellence</h2>
+    <ol class="step-list">
+      <li>Complete the cement mixer SOP checklist: isolation test, guard inspection, RCD check, drum cleanliness, and emergency stop test.</li>
+      <li>Measure materials by bucket (cement) and shovel (sand) ratio - commonly 1:4 with plasticiser or lime as specified.</li>
+      <li>Add half the water first, then cement, then sand. Allow the drum to mix for at least three minutes.</li>
+      <li>Adjust water gradually until the mix can be picked up on a trowel without slumping but still spreads easily.</li>
+      <li>Load mortar boards evenly and scrape down the drum before cleaning to avoid buildup.</li>
+      <li>Discard mortar after 60 minutes or once it has been retempered.</li>
+    </ol>
+    <div class="callout">
+      <strong>Quality check:</strong> A firm mortar bed should support a brick without sinking more than 3 mm. Remove rejected mixes from the work zone immediately.
+      <p>Reference the <em>Mixing Mortar</em> and <em>Undertaking Bricklaying</em> handbook pages as you demonstrate each step to the assessor.</p>
+    </div>
+
+    <h2>Laying Sequence</h2>
+    <p>Follow a predictable workflow so the assessor can observe every element.</p>
+    <ul>
+      <li>Lay leads (corners) first to full height or at least five courses so you can run the string line.</li>
+      <li>Butter vertical joints with the trowel tip, press the brick into the mortar bed, and tap down to line with the string.</li>
+      <li>Maintain consistent perp joint width (usually 10 mm). Use your gauge rod often, not just the string line.</li>
+      <li>For blockwork, fill cores according to the plan (for example every second core with grout or reinforcement).</li>
+      <li>Check alignment front and back - walls must be straight on both faces.</li>
+    </ul>
+
+    <h2>Joint Finishing &amp; Tolerances</h2>
+    <p>Joint finishing demonstrates workmanship and weatherproofing. Time it correctly:</p>
+    <ul>
+      <li>Strike or iron joints when mortar is thumbprint hard (surface sheen gone but still workable).</li>
+      <li>Clean excess from arrises using a soft brush and avoid smearing mortar down the wall.</li>
+      <li>Finish perp joints first, then bed joints, to avoid tearing the mortar.</li>
+    </ul>
+    <p>Cross-reference the <em>Mortar Joint Finishes</em> pages in the Employee Handbook to ensure your technique matches the required profile (e.g., ironed, ruled, raked).</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Allowable Deviation (AS 3700)</th>
+          <th>Assessor Expectation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Plumb (per 3 m height)</td>
+          <td>+/- 4 mm</td>
+          <td>Demonstrate with a spirit level or laser and log readings.</td>
+        </tr>
+        <tr>
+          <td>Level of bed joints</td>
+          <td>+/- 3 mm in 2 m</td>
+          <td>Use a level each course and make corrections immediately.</td>
+        </tr>
+        <tr>
+          <td>Joint thickness</td>
+          <td>10 mm +/- 3 mm</td>
+          <td>Spot-check with a joint gauge; redo joints that fall outside tolerance.</td>
+        </tr>
+        <tr>
+          <td>Wall thickness</td>
+          <td>Nominal +/- 5 mm</td>
+          <td>Measure cavities and confirm ties/insulation placement.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="module-nav">
+      <a href="module2.html">&larr; Previous Module</a>
+      <a href="module4.html">Next Module &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="copyright-footer">
+    <div class="copyright-content">
+      <div class="copyright-notice">
+        <p><strong>Notice:</strong> All images found throughout this site are provided solely for teaching and learning with our enrolled students.</p>
+        <p class="copyright-warning"><strong>WARNING:</strong> This material has been reproduced and communicated to you by or on behalf of Wagga Wagga High School pursuant to Part VB of the Copyright Act 1968 (Cth). This material may be subject to copyright. Any further copying or communication may be the subject of copyright protection under the Act.</p>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-info">
+        <p>&copy; 2025 Wagga Wagga High School - Construction VET Resources</p>
+      </div>
+    </div>
+  </footer>
+  <script src="../search.js"></script>
+</body>
+</html>

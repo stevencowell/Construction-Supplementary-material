@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5.1 Brick &amp; Block Interactive Learning Module</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body{font-family:'Roboto',sans-serif;background:#f3f5fa}
+        .card{max-width:64rem;margin:auto;background:#fff;border-radius:1rem;box-shadow:0 8px 24px rgba(0,0,0,.08);overflow:hidden}
+        .btn{padding:.65rem 1.4rem;border-radius:.5rem;font-weight:600;transition:.2s;border:1px solid transparent;cursor:pointer;display:inline-block;text-align:center}
+        .btn-primary{background:#2563eb;color:#fff;border-color:#2563eb}
+        .btn-primary:hover{background:#1e4ed8;color:#fff}
+        .btn-secondary{background:#6b7280;color:#fff;border-color:#6b7280}
+        .btn-secondary:hover{background:#4b5563;color:#fff}
+        .btn-disabled{background:#cbd5e1!important;color:#475569!important;border-color:#cbd5e1!important;cursor:not-allowed!important}
+        .progress-bg{width:100%;height:.5rem;background:#e2e8f0;border-radius:.375rem}
+        .progress-bar-fill{background:#2563eb;height:100%;width:0;transition:width .5s ease}
+        .question-option{display:block;padding:.75rem 1rem;border:2px solid #d1d5db;border-radius:.5rem;cursor:pointer;transition:.2s}
+        .question-option:hover{border-color:#94a3b8;background:#f8fafc}
+        .question-option.selected{border-color:#2563eb;background-color:#eef2ff}
+        .feedback{border-left-width:4px;padding:1rem;margin-top:1rem;border-radius:.25rem}
+        .feedback-correct{background:#dcfce7;border-color:#16a34a;color:#166534}
+        .feedback-incorrect{background:#fee2e2;border-color:#dc2626;color:#7f1d1d}
+        .theory-box{background:#f8fafc;border:1px solid #e5e7eb;border-radius:.5rem;padding:1rem;margin-bottom:1.5rem}
+        .copyright-footer{background:linear-gradient(135deg,#f8f9fa 0%,#e9ecef 100%);border-top:3px solid #28a745;padding:2rem 1rem;margin-top:3rem;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+        .copyright-content{max-width:1200px;margin:0 auto}
+        .copyright-notice{text-align:left;margin-bottom:1.5rem;padding:1.5rem;background:#fff;border-radius:8px;border-left:4px solid #dc3545;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+        .copyright-notice p{margin:.75rem 0;line-height:1.6;color:#333}
+        .copyright-warning{background:#fff3cd;border:1px solid #ffeaa7;padding:1rem;border-radius:6px;margin-top:1rem !important;color:#856404 !important}
+        .footer-divider{height:1px;background:linear-gradient(90deg,transparent,#28a745,transparent);margin:1.5rem 0}
+        .footer-info{text-align:center;color:#6c757d;font-size:.85rem}
+    </style>
+</head>
+<body class="p-4">
+  <div class="card">
+    <div class="p-6 sm:p-10" id="tutor-content"></div>
+    <div class="bg-slate-50 border-t border-slate-200 px-6 sm:px-10 py-6 flex flex-col gap-4">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <button id="prev-btn" class="btn btn-secondary">Previous</button>
+        <div class="text-base font-semibold text-blue-700">Stage <span id="progress-text">1 of 3</span></div>
+        <button id="next-btn" class="btn btn-primary btn-disabled" disabled>Next</button>
+      </div>
+      <div class="progress-bg">
+        <div id="progress-bar" class="progress-bar-fill"></div>
+      </div>
+      <div class="flex justify-center">
+        <a href="task5_1_index.html" class="btn btn-secondary">Back to Task 5.1 Modules</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const steps = [
+        {
+          title: "Stage 1: Planning & Documentation",
+          instruction: "Demonstrate you can interpret the paperwork that governs Task 5.1.",
+          questions: [
+            {
+              theory: "<strong>Key Concept:</strong> Observation Part B requires you to prove you have reviewed the complete planning pack before work starts.",
+              q: "Which combination satisfies the document review requirement?",
+              options: [
+                "Daily toolbox minutes, weather forecast, canteen roster",
+                "Teacher project plans, Section 2 Part A/B work plans, Brick &amp; Block Coverage tables, and plant SOPs",
+                "Purchase orders, supplier invoices, bank statements",
+                "Social media posts, timetables, uniform guide"
+              ],
+              correctAnswer: 1,
+              feedback: "You must reference the plan set, Section 2 work plans, coverage tables, and SOPs when explaining your setup to the assessor."
+            },
+            {
+              theory: "<strong>Key Concept:</strong> Brick coverage calculations use 50 bricks per m&sup2; plus 5% waste, as shown in the Brick &amp; Block Coverage tables.",
+              q: "A wall measures 5.4 m long by 2.7 m high. Allowing 5% waste, roughly how many bricks do you order?",
+              options: ["650", "725", "780", "900"],
+              correctAnswer: 2,
+              feedback: "Area = 14.58 m&sup2;. 14.58 &times; 50 = 729 bricks. Add 5% (approx. 765), so 780 bricks covers the work with a small surplus."
+            },
+            {
+              theory: "<strong>Key Concept:</strong> The teacher briefing for Part B covers the controls you must later demonstrate.",
+              q: "Which list matches the briefing topics you must capture in your site diary?",
+              options: [
+                "Lunch menu, staff birthdays, canteen roster",
+                "Project possibilities, plant/tool prep, cement mixer setup, raised mortar boards/hop-ups, work area prep, material quality checks",
+                "Only brick counts and weather observations",
+                "Term calendar, uniform expectations, assembly notes"
+              ],
+              correctAnswer: 1,
+              feedback: "Record the teacher's guidance on project variations, plant setup, mixer operation, raised mortar boards, work area preparation, and material inspection so you can reference it during assessment."
+            }
+          ]
+        },
+        {
+          title: "Stage 2: Production & Quality",
+          instruction: "Show how you control the work during Observation Parts C and D.",
+          questions: [
+            {
+              theory: "<strong>Key Concept:</strong> Before Part C you must reopen the project plan, Section 2 Part A/B, the handbook (Preparing to Lay / Cutting Bricks and Blocks), and the wet cut saw SOP while recording the teacher's instructions.",
+              q: "Which preparation step meets this requirement?",
+              options: [
+                "Skim last year's notes and rely on memory for tolerances",
+                "Reopen the plan, Section 2 Part A/B, handbook extracts, and wet saw SOP, then write the teacher's safe relocation/cutting instructions in your diary",
+                "Print the SWMS from an unrelated trade and use that instead",
+                "Ask another student what they did and copy it"
+              ],
+              correctAnswer: 1,
+              feedback: "Part C evidence includes the plan set, Section 2 instructions, handbook extracts, the saw SOP, and your notes showing what the teacher briefed."
+            },
+            {
+              theory: "<strong>Key Concept:</strong> Wet cut brick saws require PPE, water suppression, and tagging if faults occur.",
+              q: "Which control is <em>not</em> acceptable when operating the wet cut saw?",
+              options: [
+                "Using RCD-protected power",
+                "Running the saw dry to cut faster",
+                "Positioning the saw over a slurry tray",
+                "Wearing hearing and eye protection"
+              ],
+              correctAnswer: 1,
+              feedback: "Never operate the saw dry. Water suppression is mandatory to control silica dust and cool the blade."
+            },
+            {
+              theory: "<strong>Key Concept:</strong> AS 3700 requires walls to remain within &plusmn;4 mm plumb over 3 m, and you must prove this in real time.",
+              q: "How do you best demonstrate compliance to the assessor?",
+              options: [
+                "State that you checked it yesterday",
+                "Measure with a spirit level at multiple points and record the readings",
+                "Rely on the string line only",
+                "Promise to fix it at the end"
+              ],
+              correctAnswer: 1,
+              feedback: "Take measurements in front of the assessor, note them in your diary, and adjust immediately if out of tolerance."
+            }
+          ]
+        },
+        {
+          title: "Stage 3: Cleanup & Handover",
+          instruction: "Finish strong by cleaning, maintaining and documenting the work.",
+          questions: [
+            {
+              theory: "<strong>Key Concept:</strong> Observation Part E relies on the Brick &amp; Block Clean Up handbook section plus each operator manual/SOP.",
+              q: "Which statement is correct after cleaning the cement mixer?",
+              options: [
+                "Leave water inside so it's ready tomorrow",
+                "Record the cleaning and any defects in the Asset Maintenance Register",
+                "Only wipe the exterior because the drum self-cleans",
+                "Store the mixer on uneven ground to drain"
+              ],
+              correctAnswer: 1,
+              feedback: "Always document maintenance/defects so the equipment history is traceable for WHS compliance."
+            },
+            {
+              theory: "<strong>Key Concept:</strong> Waste must be segregated to protect the environment and aid recycling.",
+              q: "Which combination matches Task 5.1 requirements?",
+              options: [
+                "All waste into one skip to save time",
+                "Mortar slurry in drains, bricks reused, ties in general waste",
+                "Hardened mortar into rubble bin, bricks/blocks stacked for reuse, steel ties into scrap bin",
+                "Leave pallets scattered until the next delivery"
+              ],
+              correctAnswer: 2,
+              feedback: "Segregation prevents contamination and allows materials to be reused or recycled safely."
+            },
+            {
+              theory: "<strong>Key Concept:</strong> Documentation closes out Part E &mdash; you must show evidence in the Asset Maintenance Register, SOP/housekeeping checklists, and your site diary.",
+              q: "Which paperwork sequence meets this requirement?",
+              options: [
+                "No paperwork is needed once the area looks tidy",
+                "Only email the teacher if something breaks",
+                "Update the Asset Maintenance Register, sign the cleanup/SOP checklist, and record completion in your site diary",
+                "Post a photo on social media and leave the site"
+              ],
+              correctAnswer: 2,
+              feedback: "Write up maintenance actions, sign the relevant checklist, and note cleanup completion in the diary so the assessor can verify Part E."
+            }
+          ]
+        }
+      ];
+
+      let currentStep = 0;
+      let questionIndex = 0;
+      let answered = false;
+
+      const tutorContent = document.getElementById('tutor-content');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const progressBar = document.getElementById('progress-bar');
+      const progressText = document.getElementById('progress-text');
+
+      function renderQuestion() {
+        const step = steps[currentStep];
+        const question = step.questions[questionIndex];
+
+        let optionsHTML = question.options.map((option, index) => `
+          <label class="question-option" for="option-${index}">
+            <input type="radio" id="option-${index}" name="q_option" value="${index}" class="mr-3 h-4 w-4 accent-green-600">
+            <span>${option}</span>
+          </label>
+        `).join('');
+
+        tutorContent.innerHTML = `
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">${step.title}</h2>
+          <p class="text-gray-600 mb-4">${step.instruction}</p>
+          <div class="mt-6 p-5 border border-gray-200 rounded-lg bg-white">
+            <div class="theory-box">
+              <p class="font-semibold text-gray-700">Key Concept</p>
+              <p class="text-sm text-gray-600 mt-1">${question.theory}</p>
+            </div>
+            <h3 class="font-semibold text-gray-700 mb-3">Question ${questionIndex + 1} of ${step.questions.length}:</h3>
+            <p class="text-gray-800 mb-4">${question.q}</p>
+            <div class="space-y-3">${optionsHTML}</div>
+            <button id="check-answer-btn" class="btn btn-primary w-full mt-6">Check Answer</button>
+            <div id="feedback-area" class="mt-4"></div>
+          </div>
+        `;
+        updateUI();
+        attachEventListeners();
+      }
+
+      function updateUI() {
+        progressText.textContent = `${currentStep + 1} of ${steps.length}`;
+        progressBar.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
+
+        prevBtn.disabled = currentStep === 0 && questionIndex === 0;
+        prevBtn.classList.toggle('btn-disabled', prevBtn.disabled);
+
+        nextBtn.disabled = !answered;
+        nextBtn.classList.toggle('btn-disabled', !answered);
+
+        if (currentStep === steps.length - 1 && questionIndex === steps[currentStep].questions.length - 1) {
+            nextBtn.textContent = 'Finish';
+        } else {
+            nextBtn.textContent = 'Next';
+        }
+      }
+
+      function attachEventListeners() {
+        const checkBtn = document.getElementById('check-answer-btn');
+        const optionLabels = document.querySelectorAll('.question-option');
+
+        optionLabels.forEach(label => {
+          label.addEventListener('click', () => {
+            if (checkBtn.disabled) return;
+            optionLabels.forEach(l => l.classList.remove('selected'));
+            label.classList.add('selected');
+            label.querySelector('input').checked = true;
+          });
+        });
+
+        if (checkBtn) {
+          checkBtn.addEventListener('click', () => {
+            const step = steps[currentStep];
+            const question = step.questions[questionIndex];
+            const feedbackArea = document.getElementById('feedback-area');
+            const selectedRadio = document.querySelector('input[name="q_option"]:checked');
+
+            if (!selectedRadio) {
+              feedbackArea.innerHTML = `<div class="feedback feedback-incorrect"><p class="font-bold">Please select an answer.</p></div>`;
+              return;
+            }
+
+            const userAnswer = parseInt(selectedRadio.value);
+            answered = true;
+
+            if (userAnswer === question.correctAnswer) {
+              feedbackArea.innerHTML = `<div class="feedback feedback-correct"><h5 class="font-bold">Correct!</h5><p class="mt-2">${question.feedback}</p></div>`;
+            } else {
+              feedbackArea.innerHTML = `<div class="feedback feedback-incorrect"><h5 class="font-bold">Not quite.</h5><p class="mt-2">${question.feedback}</p></div>`;
+            }
+
+            checkBtn.disabled = true;
+            checkBtn.classList.add('btn-disabled');
+            updateUI();
+          });
+        }
+      }
+
+      prevBtn.addEventListener('click', () => {
+        if (questionIndex > 0) {
+          questionIndex--;
+        } else if (currentStep > 0) {
+          currentStep--;
+          questionIndex = steps[currentStep].questions.length - 1;
+        }
+        answered = false;
+        renderQuestion();
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (!answered) return;
+        if (questionIndex < steps[currentStep].questions.length - 1) {
+          questionIndex++;
+        } else if (currentStep < steps.length - 1) {
+          currentStep++;
+          questionIndex = 0;
+        } else {
+          tutorContent.innerHTML = `
+            <h2 class="text-3xl font-bold text-green-600 text-center">Task 5.1 Module Complete!</h2>
+            <p class="text-gray-600 text-center mt-4">You have reviewed the planning, production, and cleanup expectations. Return to the Task 5.1 page to continue.</p>
+            <div class="text-center mt-6">
+              <a href="task5_1_index.html" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                &larr; Back to Task 5.1 Modules
+              </a>
+            </div>
+          `;
+          prevBtn.classList.add('btn-disabled');
+          prevBtn.disabled = true;
+          nextBtn.textContent = 'Done!';
+          nextBtn.classList.add('btn-disabled');
+          nextBtn.disabled = true;
+          return;
+        }
+        answered = false;
+        renderQuestion();
+      });
+
+      renderQuestion();
+    });
+  </script>
+  <script src="../search.js"></script>
+</body>
+</html>
