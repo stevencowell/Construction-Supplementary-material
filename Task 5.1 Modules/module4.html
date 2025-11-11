@@ -92,8 +92,9 @@
       max-width: 420px;
     }
     .image-frame img {
-      width: 100%;
-      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
       border: 1px solid #e0e0e0;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -107,6 +108,44 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
+    }
+    .uniform-img {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 180px;
+      height: 180px;
+      object-fit: contain;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      background: #fff;
+      padding: 0.5rem;
+    }
+    .wide-img {
+      max-width: 320px;
+      height: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #e5e7eb;
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #eff6ff;
+      font-weight: 600;
+    }
+    tr:nth-child(even) {
+      background: #f8fbff;
+    }
+    .source-note {
+      font-size: 0.9rem;
+      color: #475569;
     }
     .module-nav {
       display: flex;
@@ -218,13 +257,72 @@
     </ol>
 
     <figure class="image-frame">
-      <img src="../Construction Pictures/Angle Grinder.jpeg" alt="Worker using a guarded angle grinder while wearing eye and hearing protection">
-      <figcaption>Powered cutting requires full PPE, intact guards, and controlled feed speed to prevent kickback.</figcaption>
+      <img class="uniform-img" src="../Images for 5.1/Wet Cut Brick Saw.jpg" alt="Apprentice operating a wet cut brick saw with water feed and PPE">
+      <figcaption>Powered cutting requires full PPE, intact guards, running water feed, and controlled feed speed to prevent kickback.</figcaption>
     </figure>
 
     <div class="warning">
       <strong>Remember:</strong> Silica dust is a respiratory hazard. Ensure the water feed is continuous and never dry-cut masonry on this task without written approval. Log any dust-control issues in the site diary and report them to the assessor immediately.
     </div>
+
+    <h2>Brick Saw Cut Types You Must Demonstrate</h2>
+    <p>Observation Parts C and E require you to produce common bats and closers on the wet saw and explain their purpose. Practise each cut until you can name it from a labelled image and describe how it keeps the bond running correctly.</p>
+    <figure class="image-frame">
+      <img class="uniform-img wide-img" src="../Images for 5.1/brick cuts.jpg" alt="Photo showing labelled brick cut examples laid out on site">
+      <figcaption>Use the labelled examples to revise where each closer or bat fits into the bond before cutting.</figcaption>
+    </figure>
+    <table>
+      <thead>
+        <tr>
+          <th>Cut / Closer</th>
+          <th>Description &amp; Use</th>
+          <th>Saw Setup Checklist</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Half bat</td>
+          <td>Brick cut across its width so the length is half. Used to break bond at returns and to start alternate courses.</td>
+          <td>Mark 110&nbsp;mm from the header, square up with a bolster, then use the saw fence to hold the stretcher face flat.</td>
+        </tr>
+        <tr>
+          <td>Three-quarter bat</td>
+          <td>Length equals three quarters of a full brick. Maintains lap where openings interrupt the pattern.</td>
+          <td>Measure from the header end, lock the mitre gauge at 90&deg;, and feed slowly to avoid over-cutting the arris.</td>
+        </tr>
+        <tr>
+          <td>Queen closer</td>
+          <td>Brick cut longitudinally into two equal widths. Placed next to quoin headers to stop vertical joints lining up.</td>
+          <td>Lay the brick on its bed, clamp against a guide block, and run the saw parallel to the stretcher face for the full length.</td>
+        </tr>
+        <tr>
+          <td>King closer</td>
+          <td>Width is halved at one end but full at the other. Provides a half-header/half-stretcher face at corners.</td>
+          <td>Mark a diagonal from the centre of one end to the adjacent side, tilt the fence accordingly, and keep hands behind the cut.</td>
+        </tr>
+        <tr>
+          <td>Bevelled closer</td>
+          <td>A king closer with the entire stretcher face splayed. Used where the bond needs a gradual change in width.</td>
+          <td>Set the saw table to the required bevel (45&ndash;60&deg;), confirm the guard still covers the blade, and make two light passes.</td>
+        </tr>
+        <tr>
+          <td>Mitred closer</td>
+          <td>End is mitred across the full width for angled junctions. Common for sill returns and reveals.</td>
+          <td>Lock the mitre gauge to the requested angle, brace the brick with both hands, and let the blade reach full speed before feeding.</td>
+        </tr>
+        <tr>
+          <td>Dogleg / angle brick</td>
+          <td>Factory or site-cut brick for non-90&deg; quoins. Prevents gaps in the bond when walls change direction.</td>
+          <td>Template the required leg lengths, mark both faces, complete the first rip, rotate, then finish the return cut while supporting the waste.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="source-note">Cut definitions adapted from the <a href="https://study.madeeasy.in/ce/construction-materials/brick-masonry/" target="_blank" rel="noopener noreferrer">Study Made Easy brick masonry guide (2025)</a>. Bring the page reference to the observation so you can cite it when questioned.</p>
+    <ul>
+      <li>Label an offcut tray with each closer/bat name and place your samples there for the assessor.</li>
+      <li>Call out the measurement and intended location (e.g. "queen closer at the quoin") before you cut.</li>
+      <li>Check that every sample meets tolerances with a tape or combination square, then record it in your site diary.</li>
+    </ul>
 
     <h2>Manual Cutting &amp; Shaping</h2>
     <p>Where bolsters or grinders are authorised:</p>

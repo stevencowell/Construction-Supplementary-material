@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160">
+  <defs>
+    <linearGradient id="hawk" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </linearGradient>
+    <linearGradient id="trowelBlade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b0bec5" />
+      <stop offset="100%" stop-color="#eceff1" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="220" height="160" rx="14" ry="14" fill="#edf2ff" />
+  <rect x="35" y="40" width="120" height="120" rx="10" ry="10" fill="url(#hawk)" stroke="#94a3b8" stroke-width="2" />
+  <ellipse cx="95" cy="100" rx="55" ry="10" fill="#dbeafe" />
+  <rect x="88" y="38" width="14" height="44" rx="6" fill="#c084fc" stroke="#7c3aed" stroke-width="2" />
+  <polygon points="135,35 205,75 205,100 135,60" fill="url(#trowelBlade)" stroke="#90a4ae" stroke-width="2" />
+  <rect x="100" y="60" width="70" height="10" rx="5" fill="#b45309" stroke="#92400e" stroke-width="2" />
+  <circle cx="110" cy="65" r="3" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" />
+  <circle cx="125" cy="65" r="3" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" />
+  <circle cx="140" cy="65" r="3" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5" />
+  <text x="45" y="60" font-size="12" font-family="Roboto, Arial, sans-serif" fill="#475569">Mortar hawk</text>
+  <text x="140" y="50" font-size="12" font-family="Roboto, Arial, sans-serif" fill="#475569">Brick trowel</text>
+</svg>

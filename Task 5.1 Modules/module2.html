@@ -81,8 +81,9 @@
       max-width: 420px;
     }
     .image-frame img {
-      width: 100%;
-      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
       border: 1px solid #e0e0e0;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -96,6 +97,62 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
+    }
+    .uniform-img {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 180px;
+      height: 180px;
+      object-fit: contain;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      background: #fff;
+      padding: 0.5rem;
+    }
+    .wide-img {
+      max-width: 540px;
+      height: auto;
+    }
+    .figure-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    .figure-table td {
+      width: 50%;
+      padding: 0.5rem;
+      vertical-align: top;
+    }
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .tool-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+    }
+    .tool-card img {
+      margin-bottom: 1rem;
+    }
+    .tool-card h3 {
+      margin: 0 0 0.5rem 0;
+      color: #1d4ed8;
+      font-size: 1.1rem;
+    }
+    .tool-card p {
+      margin: 0.35rem 0;
+      font-size: 0.95rem;
+      color: #475569;
+    }
+    .tool-card em {
+      color: #0f172a;
+      font-weight: 500;
     }
     table {
       width: 100%;
@@ -257,6 +314,49 @@
       </tbody>
     </table>
 
+    <h2>Bricklaying Tools Overview</h2>
+    <p>This quick reference mirrors the Task 2 layout so you can match each tool image with its use before you present for Observation Parts B&ndash;D.</p>
+    <div class="tool-grid">
+      <article class="tool-card">
+        <img class="uniform-img" src="../Images for 5.1/trowel and hawk.png" alt="Brick trowel resting on a mortar hawk loaded with mortar" loading="lazy">
+        <h3>Brick Trowel + Hawk</h3>
+        <p>Spreads mortar beds and buttered perps with consistent motion. Keep handles tight, clean the blade between batches, and never leave the trowel buried in mortar.</p>
+        <p><em>Use:</em> Demonstrate batching and bed preparation for Parts B and C; refer to the <em>Preparing to Lay Bricks and Blocks</em> handbook steps.</p>
+      </article>
+      <article class="tool-card">
+        <img class="uniform-img" src="../Images for 5.1/Bolster and lump hammer.jpg" alt="Bolster chisel positioned on a brick while a lump hammer strikes the head" loading="lazy">
+        <h3>Bolster + Lump Hammer</h3>
+        <p>Used to trim bricks or blocks down to closers and custom widths before finalizing on the saw. Inspect striking faces, wear gloves and glasses, and hold the bolster outside the striking zone.</p>
+        <p><em>Use:</em> Show how you square off damaged bricks prior to cutting for Part C brick preparation.</p>
+      </article>
+      <article class="tool-card">
+        <img class="uniform-img" src="../Images for 5.1/jointing tools.jpg" alt="Array of brick jointing tools laid out on a timber surface" loading="lazy">
+        <h3>Jointing Tool Set</h3>
+        <p>Concave, Vee, flush, raked and weather-struck jointers give different finishes and weatherproofing. Select the profile that matches the work plan and demonstrate the timing (thumb-print hard mortar).</p>
+        <p><em>Use:</em> Required in Part D when you present mortar joint finishes for assessment.</p>
+      </article>
+      <article class="tool-card">
+        <img class="uniform-img" src="../Images for 5.1/order for laying bricks.jpg" alt="Bricklayer levelling a course while following the laying order" loading="lazy">
+        <img class="uniform-img" src="../Images for 5.1/plumb bob.jpg" alt="Traditional plumb bob hanging from a line to check vertical alignment" loading="lazy">
+        <h3>Spirit Level + Plumb Bob</h3>
+        <p>Confirms level, plumb and perp alignment at every course. Zero the vial, clean the faces, and quote AS 3700 tolerances (plumb +/- 4&nbsp;mm in 3&nbsp;m).</p>
+        <p><em>Use:</em> Demonstrate set-out checks in Parts B and D when you prove the wall is within tolerance.</p>
+      </article>
+      <article class="tool-card">
+        <img class="uniform-img" src="../Images for 5.1/Setting up brick line.jpg" alt="Bricklayer tensioning a string line between two corner profiles" loading="lazy">
+        <img class="uniform-img" src="../Images for 5.1/gauge rod.jpg" alt="Gauge rod marked with course heights for brickwork" loading="lazy">
+        <h3>String Line + Gauge Rods</h3>
+        <p>Controls straightness and course heights. Keep lines clear of the wall face, protect them from mortar splash, and label gauge rods for bricks vs blocks.</p>
+        <p><em>Use:</em> Highlight during Part B planning discussions and Part D laying demonstrations.</p>
+      </article>
+      <article class="tool-card">
+        <img class="uniform-img" src="../Images for 5.1/Wet Cut Brick Saw.jpg" alt="Wet cut brick saw with water feed and guard in place" loading="lazy">
+        <h3>Wet Cut Brick Saw</h3>
+        <p>Produces closers, bats and mitred corners accurately. Check guards, RCD protection, blade condition, and water flow before each use; capture slurry in trays.</p>
+        <p><em>Use:</em> Required evidence in Part C when cutting bricks/blocks and again in Part E during shutdown and cleaning.</p>
+      </article>
+    </div>
+
     <h2>Plant Setup &amp; Pre-Start Checks</h2>
     <p>Before Observation Parts B and C, you must demonstrate correct plant setup. Apply these steps every time:</p>
     <ul>
@@ -266,10 +366,22 @@
       <li>Tag-out equipment immediately if start/stop buttons stick, guards are missing, or leakages are detected.</li>
     </ul>
 
-    <figure class="image-frame">
-      <img src="../additional tools/pallet trolley.jpg" alt="Brick pallet trolley and stacked materials staged beside a work area">
-      <figcaption>Stage bricks/blocks on trolleys or pallets to minimise lifts and keep travel paths clear.</figcaption>
-    </figure>
+    <table class="figure-table">
+      <tr>
+        <td>
+          <figure class="image-frame">
+            <img class="uniform-img wide-img" src="../Images for 5.1/Site setup for brick laying.jpg" alt="Bricklaying site setup showing staged materials, scaffolds and safety barriers">
+            <figcaption>Stack bricks neatly on pallets near the work face while keeping scaffold access and exclusion zones clear.</figcaption>
+          </figure>
+        </td>
+        <td>
+          <figure class="image-frame">
+            <img class="uniform-img" src="../additional tools/pallet trolley.jpg" alt="Brick pallet trolley loaded with materials ready to move safely">
+            <figcaption>Use pallet trolleys or mechanical aids for long moves to stay within manual handling limits.</figcaption>
+          </figure>
+        </td>
+      </tr>
+    </table>
 
     <div class="info-card">
       <strong>Tip:</strong> Keep laminated SOPs with the plant. The assessor will often ask you to point out the control or warning section while you work.
@@ -314,7 +426,7 @@
     </ul>
 
     <figure class="image-frame">
-      <img src="../Construction Pictures/Bags of cement.jpeg" alt="Multiple bags of cement stacked neatly on pallets inside a workshop">
+      <img class="uniform-img" src="../Images for 5.1/Bags of cement.jpeg" alt="Stacks of cement bags stored under cover on pallets">
       <figcaption>Store cement and sand in dry, covered zones so mix proportions stay accurate.</figcaption>
     </figure>
 

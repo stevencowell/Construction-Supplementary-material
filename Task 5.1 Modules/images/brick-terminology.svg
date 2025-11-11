@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220">
+  <rect width="360" height="220" rx="18" ry="18" fill="#f8fafc" />
+  <g transform="translate(60,60)">
+    <polygon points="0,60 120,0 240,30 120,90" fill="#f97316" opacity="0.8" />
+    <polygon points="120,90 240,30 240,120 120,180" fill="#ea580c" opacity="0.85" />
+    <polygon points="0,60 120,90 120,180 0,150" fill="#fb923c" opacity="0.9" />
+    <rect x="80" y="25" width="45" height="18" rx="4" fill="#fcd34d" />
+  </g>
+  <g font-family="Roboto, Arial, sans-serif" font-size="14" fill="#0f172a">
+    <text x="75" y="35">Bed / Face</text>
+    <text x="35" y="140">Stretcher face</text>
+    <text x="265" y="115">Header face</text>
+    <text x="175" y="55">Frog</text>
+    <text x="250" y="190">Arris</text>
+  </g>
+  <g stroke="#0f172a" stroke-width="2" fill="none" stroke-linecap="round">
+    <line x1="120" y1="50" x2="120" y2="90" />
+    <line x1="70" y1="140" x2="120" y2="125" />
+    <line x1="265" y1="120" x2="240" y2="110" />
+    <line x1="190" y1="55" x2="215" y2="70" />
+    <line x1="255" y1="185" x2="230" y2="165" />
+  </g>
+  <text x="90" y="200" font-size="12" font-family="Roboto, Arial, sans-serif" fill="#475569">
+    Label the stretcher, header, frog, bed and arrises before you start cutting.
+  </text>
+</svg>

@@ -80,6 +80,22 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .uniform-img {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 180px;
+      height: 180px;
+      object-fit: contain;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      background: #fff;
+      padding: 0.5rem;
+    }
+    .wide-img {
+      max-width: 540px;
+      height: auto;
+    }
     .step-list {
       list-style: decimal;
       padding-left: 1.5rem;
@@ -97,8 +113,9 @@
       max-width: 420px;
     }
     .image-frame img {
-      width: 100%;
-      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
       border: 1px solid #e0e0e0;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -107,6 +124,59 @@
       margin-top: 0.5rem;
       font-size: 0.9rem;
       color: #4b5563;
+    }
+    .diagram-card {
+      background: #f5f3ff;
+      border: 1px solid #c4b5fd;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(79, 70, 229, 0.12);
+    }
+    .diagram-card img {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .diagram-note {
+      font-size: 0.9rem;
+      color: #4c1d95;
+      margin-top: 0.75rem;
+    }
+    .term-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .term-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 1rem;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    .figure-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    .figure-table td {
+      width: 50%;
+      padding: 0.5rem;
+      vertical-align: top;
+    }
+    .term-card h3 {
+      margin-top: 0;
+      color: #4338ca;
+    }
+    .term-card p {
+      margin: 0.25rem 0 0 0;
+    }
+    .term-quiz {
+      list-style: decimal;
+      padding-left: 1.25rem;
     }
     table {
       width: 100%;
@@ -232,10 +302,58 @@
       <li>Record tolerances in your notebook; assessors often ask for the acceptable deviation (for example, +/- 4 mm in 3 m for plumb).</li>
     </ul>
 
-    <figure class="image-frame">
-      <img src="../additional tools/stringline.jpg" alt="Bricklayer adjusting a stringline between two timber profiles">
-      <figcaption>Taut stringlines and well-braced profiles keep each course straight.</figcaption>
-    </figure>
+    <table class="figure-table">
+      <tr>
+        <td>
+          <figure class="image-frame">
+            <img class="uniform-img" src="../Images for 5.1/Setting up brick line.jpg" alt="Bricklayer tightening a string line between two corner profiles">
+            <figcaption>Taut stringlines and well-braced profiles keep each course straight.</figcaption>
+          </figure>
+        </td>
+        <td>
+          <figure class="image-frame">
+            <img class="uniform-img" src="../Images for 5.1/Site setup for brick laying.jpg" alt="Site setup showing staged bricks, scaffold access, and exclusion zones">
+            <figcaption>Plan your staging so bricks, scaffolds, and travel paths are organised before the first course.</figcaption>
+          </figure>
+        </td>
+      </tr>
+    </table>
+
+    <h2>Brick Terminology Visual Check</h2>
+    <p>Assessors often point to a labelled brick and ask you to identify the face or edge before you can move on to cutting tasks. Use the diagram below as your revision aid.</p>
+    <div class="diagram-card">
+      <a href="../Images for 5.1/Brick Teminology.jpg" target="_blank" rel="noopener noreferrer">
+        <img class="uniform-img" src="../Images for 5.1/Brick Teminology.jpg" alt="Photo of a labelled brick showing stretcher, header, frog and arrises" loading="lazy">
+      </a>
+      <p class="diagram-note">Definitions adapted from the <a href="https://study.madeeasy.in/ce/construction-materials/brick-masonry/" target="_blank" rel="noopener noreferrer">Study Made Easy brick masonry guide (2025)</a>. Image sourced from the provided Task 5.1 photo pack.</p>
+    </div>
+    <div class="term-grid">
+      <div class="term-card">
+        <h3>Bed / Face</h3>
+        <p>The top or bottom surface of the brick that receives the mortar bed. Keep it clean and dampen lightly before laying.</p>
+      </div>
+      <div class="term-card">
+        <h3>Stretcher</h3>
+        <p>The long face of the brick. Visible when bricks are laid lengthwise; must align with the string line.</p>
+      </div>
+      <div class="term-card">
+        <h3>Header</h3>
+        <p>The short face at the end of the brick. Used to tie wythes together and when forming returns.</p>
+      </div>
+      <div class="term-card">
+        <h3>Arris</h3>
+        <p>The sharp meeting edge of two faces. Protect arrises from chips during handling and tooling.</p>
+      </div>
+      <div class="term-card">
+        <h3>Frog</h3>
+        <p>The recess on the bed that reduces weight and improves mortar bond. Keep frogs up unless plans specify otherwise.</p>
+      </div>
+    </div>
+    <ol class="term-quiz">
+      <li>Close the labels on the diagram and call out the bed, header, stretcher, arris and frog for a peer to confirm.</li>
+      <li>Explain how damaging each feature (for example chipping an arris) affects Observation Part D quality checks.</li>
+      <li>Match each feature to the related handbook instruction so you can quote the page when asked.</li>
+    </ol>
 
     <h2>Mortar Mixing Excellence</h2>
     <ol class="step-list">
@@ -253,6 +371,10 @@
 
     <h2>Laying Sequence</h2>
     <p>Follow a predictable workflow so the assessor can observe every element.</p>
+    <figure class="image-frame">
+      <img class="uniform-img" src="../Images for 5.1/order for laying bricks.jpg" alt="Bricklayer following the correct order while laying a brick course">
+      <figcaption>Lay leads first, then follow the planned order so every course stays on gauge and aligned.</figcaption>
+    </figure>
     <ul>
       <li>Lay leads (corners) first to full height or at least five courses so you can run the string line.</li>
       <li>Butter vertical joints with the trowel tip, press the brick into the mortar bed, and tap down to line with the string.</li>

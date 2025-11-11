@@ -243,6 +243,16 @@
       transform: translateY(-5px);
       box-shadow: 0 8px 25px rgba(30, 64, 175, 0.3);
     }
+
+    .video-card {
+      border: 1px solid #e0e0e0;
+      background: #fff;
+    }
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      background: #fff;
+    }
     
     .tutorial-thumb {
       background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
@@ -259,10 +269,26 @@
       color: #1e40af;
       font-size: 2.5rem;
     }
+
+    .video-thumb {
+      background: #f3eef9;
+    }
+    .video-thumb span {
+      color: #1976d2;
+      font-size: 2.5rem;
+    }
     
     .tutorial-card .module-title,
     .checklist-card .module-title {
       color: #fff;
+    }
+
+    .video-card .module-title {
+      color: #333;
+    }
+
+    .video-card .card-subtitle {
+      color: #555;
     }
     
     .card-subtitle {
@@ -400,6 +426,11 @@
           <div class="thumb-container tutorial-thumb"><span>&#127891;</span></div>
           <div class="module-title">Task 5.1 Tutorial Part 2</div>
           <div class="card-subtitle">Interactive Learning Guide</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=jDgEqhz94-Y" class="module-card video-card" target="_blank" rel="noopener noreferrer">
+          <div class="thumb-container video-thumb"><span>&#9654;</span></div>
+          <div class="module-title">Brick Saw &amp; Tool Setup Video</div>
+          <div class="card-subtitle">YouTube walkthrough</div>
         </a>
         <a href="Observation%20Checklist%20Task%205.1%20-%20Bricklaying.html" class="module-card checklist-card">
           <div class="thumb-container checklist-thumb"><span>&#9997;</span></div>
