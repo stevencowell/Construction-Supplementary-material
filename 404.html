@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting...</title>
+  <script>
+    (function () {
+      var path = decodeURIComponent(window.location.pathname);
+      var oldStudyGuidePath = '/Construction-Supplementary-material/HSC Construction (CPC20220) Study Guide.pdf';
+      if (path === oldStudyGuidePath || path === oldStudyGuidePath + '/') {
+        window.location.replace('/Construction-Supplementary-material/hsc-study-guide.html');
+      }
+    }());
+  </script>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f9fafb; color: #333; display: grid; place-items: center; min-height: 100vh; }
+    main { max-width: 680px; background: #fff; border-left: 5px solid #28a745; border-radius: 0 8px 8px 0; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    a { color: #1f7a36; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Page not found</h1>
+    <p>If you were opening the HSC Study Guide, go to the <a href="/Construction-Supplementary-material/hsc-study-guide.html">HSC Study Guide Resources</a>.</p>
+    <p>Otherwise, return to the <a href="/Construction-Supplementary-material/">Construction home page</a>.</p>
+  </main>
+</body>
+</html>
