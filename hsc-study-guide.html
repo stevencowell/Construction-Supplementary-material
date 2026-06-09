@@ -15,45 +15,58 @@
     .back-link { display: inline-block; margin-top: 1rem; color: #fff; font-weight: 500; text-decoration: underline; }
     main { max-width: 1050px; margin: 0 auto; padding: 2rem 1rem 3rem; }
     .resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-    .resource-card { background: #fff; border: 1px solid #e5e7eb; border-left: 5px solid #28a745; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 1.25rem; display: flex; flex-direction: column; min-height: 190px; transition: transform 0.2s, box-shadow 0.2s; }
+    .resource-card { background: #fff; border: 1px solid #e5e7eb; border-left: 5px solid #28a745; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 1.25rem; display: flex; flex-direction: column; min-height: 210px; transition: transform 0.2s, box-shadow 0.2s; }
     .resource-card:hover { transform: translateY(-3px); box-shadow: 0 4px 14px rgba(0,0,0,0.14); }
     .resource-card h2 { margin: 0 0 0.5rem; color: #1f7a36; font-size: 1.25rem; }
     .resource-card p { margin: 0 0 1rem; color: #555; flex: 1; }
     .file-type { display: inline-block; align-self: flex-start; background: #e6f4ea; color: #1f7a36; border-radius: 999px; padding: 0.2rem 0.65rem; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.8rem; }
+    .button-row { display: flex; flex-direction: column; gap: 0.55rem; }
     .open-button { display: inline-block; background: #28a745; color: #fff; font-weight: 700; text-align: center; border-radius: 6px; padding: 0.7rem 1rem; }
+    .open-button.secondary { background: #1f7a36; }
     .open-button:hover { background: #218838; text-decoration: underline; }
+    .open-button.secondary:hover { background: #166128; }
     .note { margin-top: 1.5rem; background: #fff; border-left: 5px solid #f0ad4e; border-radius: 0 8px 8px 0; padding: 1rem 1.25rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); color: #555; }
   </style>
 </head>
 <body>
   <header>
     <h1>HSC Study Guide Resources</h1>
-    <p>Open the main study guide PDF or the supporting pattern notes for full paper and long response revision.</p>
+    <p>Open the main study guide PDF, read the supporting summaries, or open the original Word documents.</p>
     <a class="back-link" href="index.html">&larr; Back to Home</a>
   </header>
 
   <main>
     <section class="resource-grid" aria-label="HSC study guide resource files">
-      <a class="resource-card" href="https://raw.githubusercontent.com/stevencowell/Construction-Supplementary-material/85e5f5e889ccb8c74f27b0c953d5036d52dea318/HSC%20Construction%20(CPC20220)%20Study%20Guide.pdf" target="_blank">
+      <div class="resource-card">
         <span class="file-type">PDF</span>
         <h2>HSC Construction Study Guide</h2>
         <p>The original HSC Construction study guide for CPC20220 revision.</p>
-        <span class="open-button">Open PDF</span>
-      </a>
-      <a class="resource-card" href="hsc-full-paper-patterns.html">
-        <span class="file-type">Guide</span>
+        <div class="button-row">
+          <a class="open-button" href="https://raw.githubusercontent.com/stevencowell/Construction-Supplementary-material/85e5f5e889ccb8c74f27b0c953d5036d52dea318/HSC%20Construction%20(CPC20220)%20Study%20Guide.pdf" target="_blank">Open PDF</a>
+        </div>
+      </div>
+
+      <div class="resource-card">
+        <span class="file-type">Guide + DOCX</span>
         <h2>Full Paper Patterns 2021-2025</h2>
         <p>Whole-paper patterns from recent HSC VET Construction papers.</p>
-        <span class="open-button">Open Guide</span>
-      </a>
-      <a class="resource-card" href="hsc-long-response-patterns.html">
-        <span class="file-type">Guide</span>
+        <div class="button-row">
+          <a class="open-button" href="hsc-full-paper-patterns.html">Open summary</a>
+          <a class="open-button secondary" href="https://docs.google.com/document/d/1K99cA8UYzDCve0Tc18XV_L9osdmhYo0p/edit?usp=drivesdk&rtpof=true&sd=true" target="_blank">Open original Word file</a>
+        </div>
+      </div>
+
+      <div class="resource-card">
+        <span class="file-type">Guide + DOCX</span>
         <h2>Long Response Patterns 2021-2025</h2>
         <p>Focused guidance for stronger 15-mark long response answers.</p>
-        <span class="open-button">Open Guide</span>
-      </a>
+        <div class="button-row">
+          <a class="open-button" href="hsc-long-response-patterns.html">Open summary</a>
+          <a class="open-button secondary" href="https://docs.google.com/document/d/1kTcMxqStHMnOIRsHpw1GzAvjLmtozRjJ/edit?usp=drivesdk&rtpof=true&sd=true" target="_blank">Open original Word file</a>
+        </div>
+      </div>
     </section>
-    <section class="note"><strong>Teacher note:</strong> The PDF opens in a new tab. The pattern documents have been added as web pages so students can read them directly on phones, laptops, and classroom devices.</section>
+    <section class="note"><strong>Teacher note:</strong> The PDF opens in a new tab. The two pattern resources now include both a quick web summary and a link to the original Word file.</section>
   </main>
 </body>
 </html>
