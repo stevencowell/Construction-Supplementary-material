@@ -8,7 +8,8 @@
     (function () {
       var path = decodeURIComponent(window.location.pathname);
       var oldStudyGuidePath = '/Construction-Supplementary-material/HSC Construction (CPC20220) Study Guide.pdf';
-      if (path === oldStudyGuidePath || path === oldStudyGuidePath + '/') {
+      var oldStudyGuideIndexPath = oldStudyGuidePath + '/index.html';
+      if (path === oldStudyGuidePath || path === oldStudyGuidePath + '/' || path === oldStudyGuideIndexPath) {
         window.location.replace('/Construction-Supplementary-material/hsc-study-guide.html');
       }
     }());
