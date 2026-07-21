@@ -77,6 +77,17 @@
         font-weight: 500;
         color: #333;
     }
+    .student-guide-callout {
+      background: #effaf2;
+      border: 1px solid #9ad5a7;
+      border-radius: 8px;
+      color: #1e4d2b;
+      margin-top: 1.25rem;
+      padding: 1rem;
+    }
+    .student-guide-callout strong {
+      color: #1e4d2b;
+    }
     .modules-section h2 {
       font-size: 2rem;
       color: #563d7c;
@@ -259,6 +270,22 @@
       color: #1e40af;
       font-size: 2.5rem;
     }
+
+    .student-guide-card {
+      background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+      border: 2px solid #15803d;
+    }
+    .student-guide-card:hover {
+      background: linear-gradient(135deg, #166534 0%, #14532d 100%);
+      box-shadow: 0 8px 25px rgba(21, 128, 61, 0.3);
+    }
+    .student-guide-thumb {
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    }
+    .student-guide-thumb span {
+      color: #166534;
+      font-size: 2.5rem;
+    }
     
     .tutorial-card .module-title,
     .checklist-card .module-title {
@@ -369,6 +396,7 @@
             <li><strong>Section 3: Direct Observation.</strong> An assessor will observe you planning and building the three projects. You must demonstrate safe work practises, accurate manufacturing, correct assembly techniques, and proper cleanup procedures.</li>
         </ul>
         <p>You must achieve a "Satisfactory" result in all parts of all three sections to be judged competent.</p>
+        <p class="student-guide-callout"><strong>Start with the Student Guide.</strong> Download the workbook below, save a copy, and complete each embedded student question before submitting it as directed by your teacher.</p>
     </div>
     <section class="modules-section">
       <h2>Modules</h2>
@@ -388,6 +416,11 @@
         <a href="module4.html" class="module-card">
           <div class="thumb-container"><span>4</span></div>
           <div class="module-title">Knock-Down Fittings & Joinery Units</div>
+        </a>
+        <a href="Task%205.3%20-%20Joinery%20-%20Student%20Guide.docx" class="module-card student-guide-card" target="_blank" rel="noopener" aria-label="Open the Task 5.3 Joinery Student Guide Word workbook">
+          <div class="thumb-container student-guide-thumb"><span>📝</span></div>
+          <div class="module-title">Task 5.3 Student Guide</div>
+          <div class="card-subtitle">Download the workbook and complete the questions</div>
         </a>
         <a href="joinery_observation_tutor%20(1).html" class="module-card tutorial-card">
           <div class="thumb-container tutorial-thumb"><span>📚</span></div>
@@ -422,4 +455,3 @@
   <script src="../search.js"></script>
 </body>
 </html>
-
