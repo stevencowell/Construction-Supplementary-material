@@ -33,89 +33,48 @@
       align-items: center;
       z-index: 1;
     }
-    #evidence-link {
+    .hero-links {
       position: absolute;
       top: 5rem;
       right: 0.75rem;
+      width: 190px;
+      display: grid;
+      gap: 0.5rem;
+      z-index: 5;
+    }
+    .hero-links a {
       color: #fff;
       font-weight: 500;
       text-decoration: none;
-      padding: 0.5rem;
+      min-height: 46px;
+      padding: 0.55rem 0.75rem;
       background-color: rgba(40, 167, 69, 0.9);
       border-radius: 5px;
-      transition: background-color 0.2s;
+      transition: background-color 0.2s, transform 0.2s;
       backdrop-filter: blur(5px);
-      z-index: 5;
-    }
-    #study-guide-link {
-      position: absolute;
-      top: 7.25rem;
-      right: 0.75rem;
-      color: #fff;
-      font-weight: 500;
-      text-decoration: none;
-      padding: 0.5rem;
-      background-color: rgba(40, 167, 69, 0.9);
-      border-radius: 5px;
-      transition: background-color 0.2s;
-      backdrop-filter: blur(5px);
-      z-index: 5;
-    }
-
-    /* New link to the Evidence Central mapping index */
-    #mapping-link {
-      position: absolute;
-      top: 9.5rem;
-      right: 0.75rem;
-      color: #fff;
-      font-weight: 500;
-      text-decoration: none;
-      padding: 0.5rem;
-      background-color: rgba(40, 167, 69, 0.9);
-      border-radius: 5px;
-      transition: background-color 0.2s;
-      backdrop-filter: blur(5px);
-      z-index: 5;
-    }
-
-    /* Link to the new scaffold examples page */
-    #scaffold-link {
-      position: absolute;
-      top: 11.75rem;
-      right: 0.75rem;
-      color: #fff;
-      font-weight: 500;
-      text-decoration: none;
-      padding: 0.5rem;
-      background-color: rgba(40, 167, 69, 0.9);
-      border-radius: 5px;
-      transition: background-color 0.2s;
-      backdrop-filter: blur(5px);
-      z-index: 5;
-    }
-    #scaffold-link:hover {
-      background-color: rgba(40, 167, 69, 1);
-      text-decoration: underline;
-    }
-
-    /* Make header buttons uniform width */
-    #evidence-link,
-    #study-guide-link,
-    #mapping-link,
-    #scaffold-link {
-      width: 180px;
       text-align: center;
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    #study-guide-link:hover {
+    .hero-links a:hover {
       background-color: rgba(40, 167, 69, 1);
       text-decoration: underline;
+      transform: translateY(-1px);
     }
-    #evidence-link:hover {
-      background-color: rgba(40, 167, 69, 1);
-      text-decoration: underline;
+    .hero-links a:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 3px;
     }
-    
+    #teacher-resources-link {
+      background: #f4c46d;
+      color: #12384a;
+      font-weight: 700;
+    }
+    #teacher-resources-link:hover {
+      background: #ffd88f;
+    }
+
     /* Center all images across the website */
     img {
       display: block;
@@ -123,10 +82,6 @@
       margin-right: auto;
     }
 
-    #mapping-link:hover {
-      background-color: rgba(40, 167, 69, 1);
-      text-decoration: underline;
-    }
     #chatbot-link {
       position: absolute;
       top: 5rem; /* Move down to align with central content */
@@ -476,7 +431,48 @@
     }
     
     /* Responsive design for search */
+    @media (max-width: 1180px) {
+      .hero-links {
+        position: static;
+        width: min(100%, 760px);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin: 0.75rem auto 0;
+      }
+
+      #chatbot-link {
+        position: static;
+        width: 160px;
+        margin: 1rem auto 0;
+      }
+    }
+
     @media (max-width: 768px) {
+      .vet-family-hero {
+        height: auto !important;
+        max-height: none !important;
+        min-height: 0 !important;
+        padding: 24px 18px 36px !important;
+      }
+
+      .hero-links {
+        width: 100%;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.6rem;
+      }
+
+      .hero-links a {
+        width: 100%;
+        min-height: 48px;
+      }
+
+      #teacher-resources-link {
+        grid-column: 1 / -1;
+      }
+
+      #chatbot-link {
+        width: min(180px, 100%);
+      }
+
       .search-container {
         flex-direction: column;
         gap: 0.75rem;
@@ -513,12 +509,13 @@
       </div>
     </div>
     
-    <a href="https://evidencecentral.info/" id="evidence-link" target="_blank">Evidence Central</a>
-    <a href="hsc-study-guide.html" id="study-guide-link">HSC Study Guide</a>
-    <!-- Link to the new Evidence Central mapping index page -->
-    <a href="evidence-central-index.html" id="mapping-link">Index Map</a>
-    <!-- Link to the new sample scaffold examples page -->
-    <a href="scaffold_examples.html" id="scaffold-link">Sample Activity Sheets</a>
+    <nav class="hero-links" aria-label="Construction quick links">
+      <a href="https://stevencowell.github.io/construction-statewide-staffroom-teacher-resources/" id="teacher-resources-link">Teacher Resources</a>
+      <a href="https://evidencecentral.info/" id="evidence-link" target="_blank" rel="noopener noreferrer">Evidence Central</a>
+      <a href="hsc-study-guide.html" id="study-guide-link">HSC Study Guide</a>
+      <a href="evidence-central-index.html" id="mapping-link">Index Map</a>
+      <a href="scaffold_examples.html" id="scaffold-link">Sample Activity Sheets</a>
+    </nav>
                 <h1 style="color: #28a745; font-size: 3.5rem; margin: 1rem 0;">VET - CONSTRUCTION</h1>
             <p style="color: white; font-size: 1.2rem; margin: 0.5rem 0;">Supplementary Material for Evidence Central</p>
             <p style="color: white;">Select a task below to access its supplementary materials</p>
