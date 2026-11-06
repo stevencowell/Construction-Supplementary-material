@@ -76,6 +76,17 @@
       margin-right: auto;
     }
   
+    /* Keep the tool reference readable on narrow screens. */
+    @media (max-width: 600px) {
+      main table, main tbody, main tr, main td {
+        display: block;
+        width: 100% !important;
+      }
+      main td { overflow-wrap: anywhere; }
+      main img { max-width: 100% !important; }
+      .module-nav { flex-wrap: wrap; gap: 0.75rem; }
+    }
+
     /* Professional Copyright Footer Styles */
     .copyright-footer {
       background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -150,7 +161,7 @@
     <a href="../index.html" class="back-link">← Back to Home Page</a>
     <a href="task2_index.html" class="back-link">← Back to Task 2 Modules</a>
 
-    <h2>Using Construction and Carpentry Hand Tools</h2>
+    <h2 id="hand-tools">Using Construction and Carpentry Hand Tools</h2>
     <p><em>Units: CPCCCM2005 - Use construction tools and equipment<br>
     CPCCCA2002 - Use carpentry tools and equipment</em></p>
 

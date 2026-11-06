@@ -175,6 +175,13 @@
             transform: translateY(-2px);
         }
 
+        .feature-item.interactive:focus-visible,
+        .close-modal:focus-visible,
+        .plan-example-link:focus-visible {
+            outline: 3px solid #1e40af;
+            outline-offset: 3px;
+        }
+
         .feature-item strong {
             color: #1e40af;
             display: block;
@@ -213,8 +220,21 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
             animation: fadeIn 0.3s ease;
+        }
+
+        .feature-modal[open] {
+            display: block;
+        }
+
+        .feature-modal::backdrop {
+            background-color: rgba(0,0,0,0.7);
         }
 
         .modal-content {
@@ -238,6 +258,10 @@
             padding: 1rem;
             cursor: pointer;
             transition: color 0.3s ease;
+            border: 0;
+            background: white;
+            min-width: 44px;
+            min-height: 44px;
         }
 
         .close-modal:hover {
@@ -247,6 +271,20 @@
         .feature-guide {
             padding: 2rem;
             padding-top: 0;
+        }
+
+        .plan-example-image {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 1px solid #cbd5e1;
+        }
+
+        .plan-example-link {
+            display: inline-block;
+            margin: 0.5rem 0 1rem;
+            padding: 0.5rem;
+            color: #1e40af;
         }
 
         .plan-section {
@@ -640,6 +678,14 @@
                 width: 95%;
                 margin: 5% auto;
             }
+
+            .feature-guide {
+                padding: 0 1rem 1rem;
+            }
+
+            .plan-section {
+                padding: 1rem;
+            }
             
             .plan-actions {
                 grid-template-columns: 1fr;
@@ -928,7 +974,7 @@
                 <p>Click on any feature below to see exactly where to find it on the plans and what to look for:</p>
                 
                 <div class="feature-grid">
-                    <div class="feature-item interactive" data-feature="site-plan">
+                    <div id="site-plan" class="feature-item interactive" data-feature="site-plan" role="button" tabindex="0" aria-label="Open site plan example and guide" aria-haspopup="dialog" aria-controls="featureModal">
                         <strong>Site Plan Elements:</strong>
                         <ul>
                             <li>Property boundaries and dimensions</li>
@@ -938,7 +984,7 @@
                         </ul>
                         <div class="feature-hint">Click to see where to find these on the site plan</div>
                     </div>
-                    <div class="feature-item interactive" data-feature="floor-plan">
+                    <div id="floor-plan" class="feature-item interactive" data-feature="floor-plan" role="button" tabindex="0" aria-label="Open floor plan example and guide" aria-haspopup="dialog" aria-controls="featureModal">
                         <strong>Floor Plan Elements:</strong>
                         <ul>
                             <li>Room layouts and dimensions</li>
@@ -948,7 +994,7 @@
                         </ul>
                         <div class="feature-hint">Click to see where to find these on the floor plan</div>
                     </div>
-                    <div class="feature-item interactive" data-feature="elevation">
+                    <div id="elevation" class="feature-item interactive" data-feature="elevation" role="button" tabindex="0" aria-label="Open elevation example and guide" aria-haspopup="dialog" aria-controls="featureModal">
                         <strong>Elevation Elements:</strong>
                         <ul>
                             <li>External finishes and materials</li>
@@ -961,12 +1007,12 @@
                 </div>
                 
                 <!-- Interactive Feature Guide Modal -->
-                <div id="featureModal" class="feature-modal">
+                <dialog id="featureModal" class="feature-modal" aria-labelledby="feature-guide-title">
                     <div class="modal-content">
-                        <span class="close-modal">&times;</span>
+                        <button type="button" class="close-modal" aria-label="Close plan guide" autofocus>&times;</button>
                         <div id="modalContent"></div>
                     </div>
-                </div>
+                </dialog>
             </div>
         </main>
     </div>
@@ -1185,36 +1231,98 @@
         const modalContent = document.getElementById('modalContent');
         const closeBtn = document.querySelector('.close-modal');
         const interactiveItems = document.querySelectorAll('.feature-item.interactive');
+        const planExamples = {
+            'site-plan': { page: '05', label: 'Site plan A102', alt: 'Site plan A102 with property boundaries, building layout and a north arrow at the upper right' },
+            'floor-plan': { page: '08', label: 'Floor plan and section A105', alt: 'Floor plan and section A105 showing rooms, fixtures, dimensions and section A-A' },
+            'elevation': { page: '09', label: 'Elevations A201', alt: 'Elevations A201 showing the north east, north west, south west and south east building views' }
+        };
+        let returnFocus = null;
+        let previousOverflow = '';
 
-        // Open modal when clicking on interactive items
+        function openFeature(feature, trigger) {
+            const example = planExamples[feature];
+            if (!featureGuides[feature] || !example) return;
+            returnFocus = trigger;
+            modalContent.innerHTML = featureGuides[feature];
+            const heading = modalContent.querySelector('h3');
+            heading.id = 'feature-guide-title';
+            const imagePath = '../plans/DA01%20-%20NO.83%20VIKING%20ST%2C%20CAMPSIE_Page_' + example.page + '.jpg';
+            const figure = document.createElement('figure');
+            const image = document.createElement('img');
+            image.src = imagePath;
+            image.alt = example.alt;
+            image.className = 'plan-example-image';
+            const caption = document.createElement('figcaption');
+            const largerLink = document.createElement('a');
+            largerLink.href = imagePath;
+            largerLink.className = 'plan-example-link';
+            largerLink.textContent = 'Open full size ' + example.label;
+            caption.append(largerLink);
+            figure.append(image, caption);
+            heading.after(figure);
+            if (!modal.open) {
+                previousOverflow = document.body.style.overflow;
+                document.body.style.overflow = 'hidden';
+                modal.showModal();
+            }
+            modal.querySelector('.modal-content').scrollTop = 0;
+            closeBtn.focus({ preventScroll: true });
+        }
+
+        // Support pointer and keyboard activation of the existing feature cards.
         interactiveItems.forEach(item => {
             item.addEventListener('click', function() {
-                const feature = this.getAttribute('data-feature');
-                if (featureGuides[feature]) {
-                    modalContent.innerHTML = featureGuides[feature];
-                    modal.style.display = 'block';
+                openFeature(this.getAttribute('data-feature'), this);
+            });
+            item.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openFeature(this.getAttribute('data-feature'), this);
                 }
             });
         });
 
-        // Close modal when clicking the X
-        closeBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
+        function closeFeature() {
+            if (!modal.open) return;
+            const trigger = returnFocus;
+            returnFocus = null;
+            modal.close();
+            document.body.style.overflow = previousOverflow;
+            previousOverflow = '';
+            if (trigger && trigger.isConnected) trigger.focus({ preventScroll: true });
+        }
+
+        // Keep cleanup synchronous so rapid close/reopen cannot use a stale close event.
+        closeBtn.addEventListener('click', closeFeature);
+        modal.addEventListener('click', event => {
+            if (event.target === modal) closeFeature();
+        });
+        modal.addEventListener('cancel', event => {
+            event.preventDefault();
+            closeFeature();
+        });
+        modal.addEventListener('keydown', event => {
+            if (event.key !== 'Tab') return;
+            const focusable = [...modal.querySelectorAll('button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])')]
+                .filter(element => element.getClientRects().length > 0);
+            if (!focusable.length) return;
+            event.preventDefault();
+            const current = focusable.indexOf(document.activeElement);
+            const next = event.shiftKey
+                ? (current <= 0 ? focusable.length - 1 : current - 1)
+                : (current + 1) % focusable.length;
+            focusable[next].focus();
         });
 
-        // Close modal when clicking outside of it
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && modal.style.display === 'block') {
-                modal.style.display = 'none';
-            }
-        });
+        // Existing incoming links promise examples, so open the matching drawing and guide.
+        function openLinkedFeature() {
+            const feature = window.location.hash.slice(1);
+            const trigger = document.getElementById(feature);
+            if (trigger && planExamples[feature]) openFeature(feature, trigger);
+        }
+        window.addEventListener('hashchange', openLinkedFeature);
+        // Run after initial fragment navigation so its focus step cannot replace dialog focus.
+        window.addEventListener('load', () => requestAnimationFrame(openLinkedFeature), { once: true });
     </script>
     
     <!-- Finish Section -->
