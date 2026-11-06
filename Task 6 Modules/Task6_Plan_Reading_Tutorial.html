@@ -1242,6 +1242,9 @@
         function openFeature(feature, trigger) {
             const example = planExamples[feature];
             if (!featureGuides[feature] || !example) return;
+            if (window.location.hash !== '#' + feature) {
+                window.history.replaceState(window.history.state, '', '#' + feature);
+            }
             returnFocus = trigger;
             modalContent.innerHTML = featureGuides[feature];
             const heading = modalContent.querySelector('h3');
